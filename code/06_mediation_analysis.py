@@ -19,17 +19,20 @@ from scipy import stats
 import warnings
 warnings.filterwarnings('ignore')
 
+from pathlib import Path
+
 # Paths
-BASE_DIR = '/dss/studies/fmri-haiku/glm_unified'
-CONN_DIR = f'{BASE_DIR}/connectivity_analysis'
-OUT_DIR = f'{BASE_DIR}/mediation_analysis'
+BASE_DIR = Path(__file__).resolve().parents[1]
+CONN_DIR = BASE_DIR / 'data' / 'connectivity'
+OUT_DIR = BASE_DIR / 'data' / 'mediation' / 'recomputed'
+OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 print("="*70)
 print("HAIKU fMRI: Full-Sample Mediation Analysis")
 print("="*70)
 
 # Load condition-specific connectivity data
-df = pd.read_csv(f'{CONN_DIR}/condition_specific_connectivity.csv')
+df = pd.read_csv(CONN_DIR / 'condition_specific_connectivity_legacy_subject_values.csv')
 print(f"\nLoaded connectivity data: {len(df)} rows")
 
 # Get unique subjects

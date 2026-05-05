@@ -27,8 +27,9 @@ except:
     print("statsmodels not available, using simple F-test approach")
 
 # Paths
-fmriprep_dir = Path("/dss/studies/fmri-haiku/derivatives/fmriprep")
-output_dir = Path("/dss/studies/fmri-haiku/glm_unified/granger_analysis_full")
+release_dir = Path(__file__).resolve().parents[1]
+fmriprep_dir = release_dir / "derivatives" / "fmriprep"  # private derivatives, not included in public tier
+output_dir = release_dir / "data" / "granger" / "legacy_recomputed_raw_derivatives_required"
 output_dir.mkdir(exist_ok=True)
 
 # ROIs

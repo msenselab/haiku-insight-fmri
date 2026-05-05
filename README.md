@@ -1,185 +1,181 @@
 # Dataset: Haiku Insight fMRI Study
 
-**"Neural signatures of poetic insight: DMN-reward coupling during haiku comprehension"**
+**Final open-data release matched to `/manuscript/Poetic-Closure.docx`**
 
-This package contains processed data and analysis code sufficient to reproduce all
-statistics, tables, and figures reported in the manuscript. Raw imaging data and
-fMRIPrep derivatives are not included (see Data Availability below).
+This repository contains processed data, result tables, manuscript figures, and
+analysis scripts for the finalized manuscript. Raw MRI images and fMRIPrep
+single-subject derivatives are not included; the release focuses on data needed
+to verify the reported statistics, tables, and figures.
 
----
+## What changed in the final manuscript sync
+
+The release now includes the analyses and figures added during Siyi's final
+analysis pass:
+
+- Figure 1: RT to first insight across haiku types.
+- Figure 3: ROI beta–behavior correlations for both RT and mean insight responses per trial.
+- Figure 4: current reduced 3-ROI network follow-ups, including condition-window GCA DOI values and Fisher-z functional connectivity.
+- Figure 5: reduced 3-ROI PCC-seed RT-modulated behavioral PPI.
+- Updated processed CSVs and reports for GCA, FC, brain-behavior, and PPI.
+
+A machine-readable file provenance table is in `MANUSCRIPT_MATCH_MANIFEST.csv`.
 
 ## Contents
 
-```
+```text
 data_release/
-├── README.md               This file
+├── README.md
+├── MANUSCRIPT_MATCH_MANIFEST.csv
+├── MANUSCRIPT_MATCH_NOTES.md
+├── code/                         Final/relevant scripts by manuscript section
 ├── data/
-│   ├── behavioral/         RT and insight-rate data (N=19)
-│   ├── group_zmaps/        Whole-brain Z-statistic maps (NIfTI, N=19, sub-005 excluded)
-│   ├── roi/                ROI beta estimates and group statistics
-│   ├── brain_behavior/     Brain-RT correlation data
-│   ├── granger/            Granger causality results
-│   ├── connectivity/       Condition-specific functional connectivity
-│   └── mediation/          Mediation and path model results
-├── figures/                Manuscript figures (Figures 1–5)
-└── code/                   Analysis scripts (numbered by manuscript section)
+│   ├── behavioral/               RT and insight-behavior tables
+│   ├── group_zmaps/              Group Z-statistic maps already in the release
+│   ├── wholebrain/clusters/      Cluster tables supporting Table 1
+│   ├── roi/                      ROI beta estimates and ROI group statistics
+│   ├── brain_behavior/           ROI beta–RT/insight correlation tables
+│   ├── granger/                  Full-run and condition-window GCA result tables
+│   ├── connectivity/             3-ROI condition FC result tables
+│   └── ppi/                      PCC × RT behavioral-PPI result tables
+├── figures/                      Exact embedded manuscript images (Figures 1–5)
+│   └── source_panels/            Higher-resolution source panels/plot outputs
+└── reports/                      Final analysis reports copied from project outputs
 ```
 
----
+## Figure-to-file map
 
-## Reproducing Each Result
+| Manuscript figure | Exact embedded image | Main source/result tables |
+|---|---|---|
+| Figure 1 RT to first insight | `figures/figure1_behavioral_rt.png` | `data/behavioral/figure1_rt_summary.csv`, `data/behavioral/figure1_rt_subject_values.csv` |
+| Figure 2 whole-brain + ROI estimates | `figures/figure2_wholebrain_roi.jpeg` | `data/group_zmaps/`, `data/wholebrain/clusters/`, `data/roi/roi_betas_individual.csv`, `data/roi/roi_statistics_full.csv` |
+| Figure 3 ROI activity vs RT/insight behavior | `figures/figure3_brain_behavior.jpeg` | `data/brain_behavior/figure3a_roi_beta_rt_correlations_fdr.csv`, `data/brain_behavior/figure3b_roi_beta_insight_correlations_fdr.csv` |
+| Figure 4 GCA/FC network analyses | `figures/figure4_network_gca_fc.jpeg` | `data/granger/gca_figure_values.csv`, `data/connectivity/fc_3roi_within_condition_fisherz_tests.csv` |
+| Figure 5 PCC × RT PPI | `figures/figure5_ppi_rt_modulation.jpeg` | `data/ppi/ppi_group_rt_modulation_betas_fdr.csv`, `data/ppi/figure5_ppi_rt_modulation_3roi_bar_values.csv` |
 
-### Behavioral Results (Table in text, RT ANOVA)
-**Script:** `code/01_behavioral_stats.py`
-**Inputs:** `data/behavioral/behavioral_rt.csv`
-**Reproduces:** RT descriptives (CA: M=6.4s, SD=3.0; JX: M=7.2s; OI: M=6.3s),
-repeated-measures ANOVA F(2,36)=4.20, p=.023, Bonferroni post-hoc comparisons.
+The `figures/source_panels/` directory contains higher-resolution PNG/PDF panel
+outputs where available. The top-level figure files are the exact images embedded
+in the final DOCX.
+
+## Reproducing / verifying key reported results
+
+### Behavioral RT results
 
 ```bash
-uv run code/01_behavioral_stats.py
+python code/01_behavioral_stats.py
 ```
 
----
+Inputs: `data/behavioral/behavioral_rt.csv`.
 
-### Figure 1 & Table 1 — Whole-Brain Activation Maps
-**Script:** `code/02_whole_brain_maps.py`
-**Inputs:** `data/group_zmaps/*.nii.gz`
-**Reproduces:** Figure 1 brain maps (CA>JX, CA>OI contrasts) and cluster table.
-Threshold: Z > 2.58 (p < .005), k >= 20 voxels.
+Reported result: RT differed across CA/JX/OI, F(2, 36) = 4.20, p = .023,
+partial eta squared = .19; JX was numerically slower than CA and OI.
 
-```bash
-uv run code/02_whole_brain_maps.py
-```
+### Whole-brain and ROI analyses
 
-**Dependencies:** `nilearn`, `numpy`, `matplotlib`
+- Group z-maps: `data/group_zmaps/`.
+- Cluster tables: `data/wholebrain/clusters/`.
+- ROI beta table: `data/roi/roi_betas_individual.csv`.
+- ROI statistics: `data/roi/roi_statistics_full.csv`.
 
----
+The manuscript reports whole-brain maps at p < .001 uncorrected with cluster
+extent k >= 20, and ROI follow-ups from 6-mm spheres centered on reported peaks.
 
-### Figure 2 & Table 2 — ROI Analysis
-**Script:** `code/03_roi_analysis.py`  
-**Pre-computed data:** `data/roi/roi_betas_individual.csv`, `data/roi/roi_statistics_full.csv`
+### Brain-behavior correlations
 
-> **Note:** This script extracts betas from first-level GLM maps (not included in
-> Tier 1 release). To verify Table 2 statistics directly from pre-computed data,
-> load `roi_statistics_full.csv` — it contains all group means, SEMs, t-statistics,
-> and p-values matching Table 2.
+Final tables:
 
-Key values verified (Insight phase):
-- PCC: CA=0.21±0.43, JX=-0.78±0.41, OI=-0.78±0.51 (CA>JX p<.001, CA>OI p=.008)
-- L Angular: CA=1.73±0.32, JX=0.39±0.32 (CA>JX p<.001)
-- R ATL: CA=0.91±0.25, JX=0.09±0.28, OI=1.16±0.39
-- vmPFC: CA=1.60±0.52, JX=0.05±0.47, OI=0.59±0.47 (all pairwise p<.05)
+- RT correlations: `data/brain_behavior/figure3a_roi_beta_rt_correlations_fdr.csv`.
+- Mean-insight correlations: `data/brain_behavior/figure3b_roi_beta_insight_correlations_fdr.csv`.
 
----
+Key RT results: left angular CA r = -.668, p = .002, q = .021; ATL CA
+r = -.60, p = .007, q = .041. No ROI × condition insight-frequency
+correlation survived FDR.
 
-### Figure 3 & Table 3 — Brain-Behavior Correlations
-**Pre-computed data:** `data/brain_behavior/rt_correlations_complete.csv`
+### GCA and FC network analyses
 
-Contains Pearson r and p-values for each ROI × condition (N=19) and pooled (N=57).
-All values verified against manuscript Table 3:
-- L Angular × CA: r=-.67, p=.002
-- R ATL × CA: r=-.60, p=.007
-- ATL pooled: r=-.48, p<.001
-- L Angular pooled: r=-.30, p=.023
+GCA final tables:
 
----
+- `data/granger/fullrun_gca_directional_contrasts.csv`
+- `data/granger/condition_window_gca_doi_summary.csv`
+- `data/granger/condition_window_gca_omnibus.csv`
+- `data/granger/gca_figure_values.csv`
 
-### Figure 4 & Table 4 — Granger Causality
-**Script:** `code/04_granger_causality.py`  
-**Pre-computed data:** `data/granger/granger_group_final.csv`
+FC final tables:
 
-> **Note:** This script requires fMRIPrep BOLD timeseries (not included).
-> `granger_group_final.csv` contains all values needed to verify Table 4:
-> - PCC→vmPFC: mean F=89.9, 95% significant, p<.001
-> - vmPFC→PCC: mean F=29.2, 95% significant, p<.001
-> - Net GC (PCC→vmPFC minus vmPFC→PCC): tested via paired t-test on
->   `data/granger/granger_all_subjects.csv`
+- `data/connectivity/fc_3roi_within_condition_fisherz_tests.csv`
+- `data/connectivity/figure4_fc_3roi_condition_bars_values.csv`
 
----
+Interpretation: full-run GCA DOI values support general temporal asymmetry in the
+reduced 3-ROI network, but condition-window GCA and FC do not show reliable
+CA/JX/OI condition differences after correction.
 
-### Figure 5 & Table 5 — Functional Connectivity
-**Script:** `code/05_connectivity_analysis.py`  
-**Pre-computed data:** `data/connectivity/condition_connectivity_comparison.csv`
+### Behavioral PPI
 
-> **Note:** This script requires fMRIPrep BOLD timeseries (not included).
-> Key value verified: PCC-vmPFC CA=.312, JX=.210, OI=.221 (CA>JX p=.048, CA>OI p=.029)
+Final tables:
 
----
+- `data/ppi/ppi_group_rt_modulation_betas_fdr.csv`
+- `data/ppi/ppi_group_rt_modulation_contrasts_fdr.csv`
+- `data/ppi/ppi_subject_level_rt_modulation_betas.csv`
 
-### Mediation Analysis (text only, no figure)
-**Script:** `code/06_mediation_analysis.py`  
-**Pre-computed data:** `data/mediation/mediation_results.csv`, `data/mediation/path_comparison.csv`
-
-> **Note:** This script requires outputs from scripts 03 and 05. Pre-computed CSV
-> contains indirect effect CIs confirming null mediation.
-
----
-
-## Data Availability
-
-| Data | Availability |
-|------|-------------|
-| Processed data (this package) | OSF / Zenodo (DOI: TBD) |
-| fMRIPrep derivatives (52GB) | OpenNeuro (accession: TBD) |
-| Raw BIDS data | Available upon reasonable request |
-
-Raw data contain unprocessed MRI scans and have not been fully anonymised for
-open release. Requests for raw data should be directed to the corresponding author.
-
----
+Figure 5 reports the reduced 3-ROI PCC × RT behavioral-PPI. Negative betas mean
+longer RT was associated with weaker PCC-target coupling; equivalently, faster
+responses were accompanied by stronger coupling. In the full 6 target × condition
+family the effects are trend-level after FDR; the manuscript frames the CA target
+family as a focused follow-up.
 
 ## Sample
 
-N = 19 participants (sub-005 excluded: outlier JX reaction time > 3 SD above group mean;
-sub-015, sub-017 excluded: incomplete data).
+N = 19 participants for the main reported analyses. The standard included sample
+is `sub-001`, `sub-002`, `sub-003`, `sub-004`, `sub-006`, `sub-007`, `sub-008`,
+`sub-009`, `sub-010`, `sub-011`, `sub-012`, `sub-013`, `sub-014`, `sub-016`,
+`sub-018`, `sub-019`, `sub-020`, `sub-021`, and `sub-023`.
 
-Included subjects: sub-001–004, sub-006–014, sub-016, sub-018–023.
+## Software
 
----
+The project analyses were run in Python with Nilearn, pandas, NumPy, SciPy,
+statsmodels, and Matplotlib. Some scripts require local fMRIPrep derivatives and
+therefore cannot be fully rerun from this public tier alone; for those analyses,
+the release includes precomputed subject/group CSVs sufficient to verify the
+manuscript statistics.
 
-## Software Requirements
+## Verification status
 
+The release was checked after the final-manuscript sync:
+
+```bash
+python -m py_compile code/*.py
+python code/01_behavioral_stats.py
+python code/01_plot_behavioral_rt_figure.py
+python code/02_whole_brain_maps.py
+python code/04_brain_behavior_roi_beta_rt.py
+python code/04_plot_brain_behavior_figure3.py
+python code/05_gca_condition_windows.py
+python code/05_plot_gca_condition_30s_bars.py
+python code/06_fc_3roi_within_condition_tests.py
+python code/06_plot_fc_3roi_condition_bars.py
+python code/06_mediation_analysis.py
+python code/07_plot_ppi_rt_modulation_3roi_bars.py
 ```
-Python >= 3.10
-nilearn >= 0.10
-numpy
-pandas
-scipy
-matplotlib
-statsmodels  # for Granger analysis
-```
 
-Install via: `uv sync` (if pyproject.toml is present) or `uv pip install nilearn pandas scipy matplotlib statsmodels`
+These checks compile all release scripts and rerun the public-tier analyses that
+do not require private raw/fMRIPrep derivatives. Scripts for raw ROI extraction,
+legacy full-run GCA, legacy connectivity extraction, and behavioral PPI model
+estimation are retained as provenance/rerun scripts; full execution requires a
+private derivative checkout. Their manuscript-matching outputs are included as
+precomputed CSVs.
 
----
-
-## Contributors
-
-| Name | Role |
-|------|------|
-| Jan Nasemann | Design, data collection |
-| Siyi Chen | Design, data collection, analysis, software, visualization |
-| Thomas Geyer | Design, data collection |
-| Jim Kacian | Design, data collection |
-| Stella Pierides | Design, data collection |
-| Hermann J. Müller | Design, analysis, supervision |
-| Zhuanghua Shi | Design, data collection, analysis, software, visualization, supervision |
-
----
+`code/02_whole_brain_maps.py` uses `Z_THRESHOLD = 3.09` and
+`CLUSTER_THRESHOLD = 20`, matching the final manuscript's p < .001 uncorrected
+positive-tail cluster display convention.
 
 ## Citation
 
-If you refer to this work, please cite:
+Chen, S., Nasemann, J., Geyer, T., Kacian, J., Pierides, S., Shi, Z., & Müller,
+H. J. (in press). *Poetic Closure in Three Lines: Neural Networks of Haiku
+Comprehension*.
 
-> Chen, S., Nasemann, J., Geyer, T., Kacian, J., Pierides, S., Shi, Z., & Müller, H. J. (in press). Poetic Closure in Three Lines: Neural Networks of Haiku Comprehension. 
-
-For the dataset specifically:
-
-> Nasemann, J., Chen, S., Geyer, T., Kacian, J., Pierides, S., Müller, H. J., & Shi, Z. (2026). *Haiku Insight fMRI Dataset* [Data set]. GitHub. https://github.com/msenselab/haiku-insight-fmri
-
----
+Dataset repository: <https://github.com/msenselab/haiku-insight-fmri>
 
 ## License
 
-Data and code are released under CC BY 4.0. Please cite the manuscript when using
-this dataset.
+Data and code are released under CC BY 4.0 unless otherwise specified. Please
+cite the manuscript when using this dataset.

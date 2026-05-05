@@ -17,7 +17,10 @@ GROUP_DIR = BASE_DIR / 'data/group_zmaps'
 OUTPUT_DIR = BASE_DIR / 'figures'
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-Z_THRESHOLD = 2.58
+# Final manuscript threshold: p < .001 uncorrected, positive-tail maps.
+# With two_sided=False in nilearn.get_clusters_table, p=.001 corresponds to z≈3.09.
+Z_THRESHOLD = 3.09
+CLUSTER_THRESHOLD = 20
 
 CONTRAST_INFO = {
     'search_CA': {'name': 'Search: Context-Action', 'cat': 'Search'},
@@ -85,7 +88,7 @@ def process_contrast(c, vmax):
     result = {'contrast': c, 'name': info['name'], 'cat': info['cat'],
               'clusters': None, 'max_z': None, 'n_voxels': 0}
     try:
-        table = get_clusters_table(z_img, stat_threshold=Z_THRESHOLD, cluster_threshold=20, two_sided=False)
+        table = get_clusters_table(z_img, stat_threshold=Z_THRESHOLD, cluster_threshold=CLUSTER_THRESHOLD, two_sided=False)
         if table is not None and len(table) > 0:
             table['Region'] = table.apply(lambda r: get_region_label(r['X'], r['Y'], r['Z']), axis=1)
             table.to_csv(cdir / f'{c}_clusters.csv', index=False)
@@ -139,7 +142,7 @@ img {{ max-width: 100%; margin: 10px 0; border-radius: 5px; }}
 
 <div class="note">
 <strong>⚠️ sub-005 excluded</strong> (JX insight rate = 18.8%, outlier)<br>
-<strong>N = 19 subjects</strong> | Threshold: Z > {Z_THRESHOLD} (p < .005) | Cluster k ≥ 20 | vmax = {vmax:.1f}
+<strong>N = 19 subjects</strong> | Threshold: Z > {Z_THRESHOLD} (p < .001 uncorrected, positive-tail) | Cluster k ≥ {CLUSTER_THRESHOLD} | vmax = {vmax:.1f}
 </div>
 
 <h2>🔑 Key Finding: Search vs Insight Comparison</h2>

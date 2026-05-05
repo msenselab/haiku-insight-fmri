@@ -34,11 +34,11 @@ warnings.filterwarnings('ignore')
 # Configuration
 # =============================================================================
 
-BASE_DIR = Path('/dss/studies/fmri-haiku')
-FMRIPREP_DIR = BASE_DIR / 'derivatives' / 'fmriprep'
-GLM_DIR = BASE_DIR / 'glm_unified'
-FIRST_LEVEL_DIR = GLM_DIR / 'first_level'
-OUTPUT_DIR = GLM_DIR / 'connectivity_analysis'
+BASE_DIR = Path(__file__).resolve().parents[1]
+FMRIPREP_DIR = BASE_DIR / 'derivatives' / 'fmriprep'  # private derivatives, not included in public tier
+GLM_DIR = BASE_DIR
+FIRST_LEVEL_DIR = BASE_DIR / 'glm_unified' / 'first_level'  # private derivatives, not included in public tier
+OUTPUT_DIR = BASE_DIR / 'data' / 'connectivity' / 'legacy_recomputed_raw_derivatives_required'
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 # ROI definitions (MNI coordinates)

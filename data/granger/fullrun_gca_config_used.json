@@ -1,0 +1,194 @@
+{
+  "analysis_name": "legacy_fullrun_3roi_tr1_deconvolved_doi_gca",
+  "created": "2026-04-27",
+  "paths": {
+    "project_root": "/dss/studies/fmri-haiku",
+    "fmriprep_dir": "/dss/studies/fmri-haiku/derivatives/fmriprep",
+    "events_dir": "/dss/studies/fmri-haiku/glm_unified/first_level",
+    "output_dir": "/dss/studies/fmri-haiku/glm_unified/granger_analysis_full/legacy3roi_tr1_deconv_doi"
+  },
+  "subjects": {
+    "exclude": [
+      "sub-005",
+      "sub-015",
+      "sub-017",
+      "sub-022"
+    ],
+    "expected_n": 19
+  },
+  "bold": {
+    "space": "MNI152NLin2009cAsym",
+    "tr_seconds": 1.0,
+    "use_tr_from_json": true,
+    "roi_radius_mm": 6
+  },
+  "rois": {
+    "PCC": [
+      0,
+      -52,
+      26
+    ],
+    "vmPFC": [
+      0,
+      46,
+      -10
+    ],
+    "L_Angular": [
+      -48,
+      -64,
+      30
+    ]
+  },
+  "conditions": [
+    "CA",
+    "JX",
+    "OI"
+  ],
+  "trial_window": {
+    "anchor_event": "insight_{condition}",
+    "matching_search_event": "search_{condition}",
+    "segment_start_seconds_relative_to_insight_onset": 0.0,
+    "segment_end_seconds_relative_to_insight_onset": 10.0,
+    "sample_rule": "include volume times t where insight_onset <= t < insight_onset + 10.0; with TR=1 this is start_idx=ceil(insight_onset), end_idx=ceil(insight_onset+10), Python-exclusive end",
+    "require_full_window_within_haiku_viewing": true,
+    "haiku_viewing_window": "matched search_{condition} onset to search onset + 30.0 s",
+    "drop_trials_if": "no matching insight_{condition}; no matching search_{condition}; or insight_onset + 10.0 > search_onset + 30.0; or window extends beyond run length",
+    "include_no_insight_trials": false,
+    "hrf_shift_seconds": 0.0,
+    "expected_samples_per_uncensored_trial": 10,
+    "rationale": "Align GCA extraction with the insight-locked GLM. Use a focused immediate post-insight neural-estimate window, not the search/onset viewing window; deconvolution makes an additional HRF shift unnecessary. Ten seconds is the primary compromise between temporal specificity and lag-4 VAR stability; 8 s and 12 s are retained as sensitivity windows."
+  },
+  "confounds": {
+    "motion_24": [
+      "trans_x",
+      "trans_y",
+      "trans_z",
+      "rot_x",
+      "rot_y",
+      "rot_z",
+      "trans_x_derivative1",
+      "trans_y_derivative1",
+      "trans_z_derivative1",
+      "rot_x_derivative1",
+      "rot_y_derivative1",
+      "rot_z_derivative1",
+      "trans_x_power2",
+      "trans_y_power2",
+      "trans_z_power2",
+      "rot_x_power2",
+      "rot_y_power2",
+      "rot_z_power2",
+      "trans_x_derivative1_power2",
+      "trans_y_derivative1_power2",
+      "trans_z_derivative1_power2",
+      "rot_x_derivative1_power2",
+      "rot_y_derivative1_power2",
+      "rot_z_derivative1_power2"
+    ],
+    "tissue": [
+      "white_matter",
+      "csf"
+    ],
+    "acompcor_first_n": 6,
+    "acompcor_columns": [
+      "a_comp_cor_00",
+      "a_comp_cor_01",
+      "a_comp_cor_02",
+      "a_comp_cor_03",
+      "a_comp_cor_04",
+      "a_comp_cor_05"
+    ],
+    "spike_columns_regex": "^motion_outlier",
+    "high_pass": "DCT cosine regressors with 128 s cutoff included in nuisance regression",
+    "low_pass": null,
+    "standardize_after_regression": true
+  },
+  "censoring": {
+    "fd_threshold_mm": 0.5,
+    "motion_outlier_columns": true,
+    "before_deconvolution": "do not delete volumes; include spike regressors in nuisance regression so the run remains evenly sampled",
+    "for_var": "drop any target row whose current sample or lagged samples touch a censored volume; lagged rows crossing trial boundaries are also dropped"
+  },
+  "deconvolution": {
+    "method": "ROI-level canonical-HRF Wiener deconvolution",
+    "hrf_source": "nilearn.glm.first_level.glover_hrf",
+    "hrf_tr_seconds": 1.0,
+    "hrf_oversampling": 1,
+    "hrf_time_length_seconds": 32.0,
+    "hrf_onset_seconds": 0.0,
+    "hrf_normalization": "normalize sampled HRF to unit sum before FFT",
+    "regularization": "lambda = 0.1 * max(abs(FFT(hrf_padded))**2) within each run length",
+    "run_handling": "perform nuisance regression and deconvolution on each continuous run before trial segmentation; current task has one run per subject",
+    "stability_flags": {
+      "max_abs_z_after_deconv": 10.0,
+      "std_ratio_deconv_to_denoised_max": 10.0,
+      "flat_std_min": 1e-06
+    }
+  },
+  "gca": {
+    "model": "bivariate VAR by subject x condition x ROI pair",
+    "lag_candidates_tr": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "lag_selection": "BIC on unrestricted bivariate VAR; same selected lag used for both directions within a pair",
+    "primary_gc_metric": "log variance-ratio GC = ln(RSS_restricted / RSS_unrestricted)",
+    "directional_p_value": "F-test comparing restricted vs unrestricted lag models",
+    "doi": "DOI_X_to_Y = logGC_X_to_Y - logGC_Y_to_X",
+    "minimum_usable_rows_after_boundary_and_censoring": 50,
+    "boundary_rule": "for lag p, first p rows of each 10-s post-insight segment are excluded; lagged predictors never cross trial boundaries"
+  },
+  "planned_pairs": [
+    {
+      "name": "PCC_vmPFC",
+      "forward": [
+        "PCC",
+        "vmPFC"
+      ],
+      "primary": true
+    },
+    {
+      "name": "L_Angular_PCC",
+      "forward": [
+        "L_Angular",
+        "PCC"
+      ],
+      "primary": false
+    },
+    {
+      "name": "L_Angular_vmPFC",
+      "forward": [
+        "L_Angular",
+        "vmPFC"
+      ],
+      "primary": false
+    }
+  ],
+  "group_inference": {
+    "test": "two-sided one-sample t-test/Wilcoxon-style summary of subject-level DOI against zero; DOI is primary, raw directional F tests are legacy/descriptive only",
+    "fdr_family": "3 planned full-run DOI tests = PCC_vmPFC, L_Angular_PCC, L_Angular_vmPFC",
+    "fdr_method": "Benjamini-Hochberg, q = 0.05",
+    "primary_test_label": "PCC_vmPFC full-run DOI"
+  },
+  "robustness": {
+    "fixed_lag_sensitivity": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "surrogate": "within-trial circular shift of the source ROI segment by a random shift >= 3 s and <= segment_length - 3 s where segment length allows; recompute DOI; 5000 permutations per pair x condition",
+    "connectivity_crosscheck": "Pearson/Fisher-z FC for same 10-s post-insight segments and ROI pairs",
+    "post_insight_window_sensitivity_seconds": [
+      8,
+      12
+    ]
+  },
+  "minimal_revision_note": "Legacy full-run GCA with requested changes: 3 legacy-coordinate ROIs (PCC, vmPFC, L_Angular), TR verified as 1 s, nuisance regression retained because fMRIPrep preprocessed BOLD is not nuisance-regressed by default, ROI-level HRF/Wiener deconvolution, BIC lag selection over 1-4 TR, and DOI/logGC forward-minus-reverse as interpretable directional contrast.",
+  "runtime": {
+    "analysis_variant": "fullrun_raw_nonnegative_F",
+    "output_dir": "glm_unified/granger_analysis_full/legacy3roi_tr1_deconv_doi"
+  }
+}

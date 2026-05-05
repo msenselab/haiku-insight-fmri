@@ -9,7 +9,7 @@ OI,6.306,2.588,0.594,6.325,19
 
 ## ANOVA Summary
 test,F,df_num,df_den,p,partial_eta_sq,mauchly_W,mauchly_p,epsilon_GG
-rm_ANOVA,4.197,2,36,0.023,0.1891,0.8803,0.3383,0.8931
+rm_ANOVA,4.197,2,36,0.023,0.1891,NA,NA,NA
 
 ## Pairwise Comparisons
 comparison,mean_diff,se_diff,t,df,p_uncorrected,p_bonferroni,cohens_d,significance

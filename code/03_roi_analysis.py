@@ -27,10 +27,10 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 
-BASE_DIR = Path('/dss/studies/fmri-haiku')
-UNIFIED_DIR = BASE_DIR / 'glm_unified'
-FIRST_LEVEL_DIR = UNIFIED_DIR / 'first_level'
-OUTPUT_DIR = UNIFIED_DIR / 'roi_analysis'
+BASE_DIR = Path(__file__).resolve().parents[1]
+UNIFIED_DIR = BASE_DIR
+FIRST_LEVEL_DIR = BASE_DIR / 'glm_unified' / 'first_level'  # private derivatives, not included in public tier
+OUTPUT_DIR = BASE_DIR / 'data' / 'roi' / 'roi_recomputed_raw_derivatives_required'
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 # Exclude outlier
