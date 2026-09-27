@@ -1,4 +1,0 @@
-Contrast,A,B,Paired,Parametric,T,dof,alternative,p-unc,p-corr,p-adjust,BF10,hedges
-haiku_type,One-image,context-action,True,True,-1.0481291992804205,20.0,two-sided,0.3070809401539713,0.9212428204619139,bonf,0.37,-0.1332669653391664
-haiku_type,One-image,juxtaposition,True,True,-2.596304078341852,20.0,two-sided,0.017264379570178935,0.051793138710536805,bonf,3.211,-0.39169901254915523
-haiku_type,context-action,juxtaposition,True,True,-2.9218862131989645,20.0,two-sided,0.008431457394483517,0.02529437218345055,bonf,5.822,-0.24989793999503152

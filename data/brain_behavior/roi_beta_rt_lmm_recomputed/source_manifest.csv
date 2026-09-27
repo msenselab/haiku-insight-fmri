@@ -1,5 +1,0 @@
-source,path,n_subjects,n_rows
-ROI beta source,/dss/studies/fmri-haiku/data_release/data/roi/roi_betas_individual.csv,19,19
-Behavioral RT source,/dss/studies/fmri-haiku/data_release/data/behavioral/behavioral_rt.csv,19,19
-Wide LMM-ready output,/dss/studies/fmri-haiku/data_release/data/brain_behavior/roi_beta_rt_lmm_recomputed/roi_betas_individual_rt_lmm_wide_subject_condition.csv,19,57
-Long LMM-ready output,/dss/studies/fmri-haiku/data_release/data/brain_behavior/roi_beta_rt_lmm_recomputed/roi_betas_individual_rt_lmm_long.csv,19,228

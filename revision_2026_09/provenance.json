@@ -364,13 +364,6 @@
       "sha256": "a8ade8aa70f001b9a31df1e8d16430041fcd6720d0a3dc20527e913ae51790df",
       "bytes": 1532,
       "portability_edit": false
-    },
-    {
-      "path": "revision_2026_09/data/response_order/N19_18_15_two_event_display_summary.csv",
-      "source_project_relative": "glm_unified/reports/search_order1_to_order3_descriptive_paired_clusters_20260922/n19_display_revision_20260923/summary_descriptive_n19.csv",
-      "sha256": "cbc300b7f8f98c85e13a97c0ab15cc1bf61590dd963bb253648a2a1003ebfc1c",
-      "bytes": 1531,
-      "portability_edit": false
     }
   ]
 }

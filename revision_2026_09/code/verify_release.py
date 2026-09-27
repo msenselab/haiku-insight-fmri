@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 53 and len({x['path'] for x in files}) == 53
+    assert len(files) == 52 and len({x['path'] for x in files}) == 52
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -71,15 +71,12 @@ def main() -> None:
     assert sum(int(x['n_presentations']) for x in summary) == 798
     assert sum(int(x['n_responses'])*int(x['n_presentations']) for x in summary) == 1891
     assert not (REV/'data/response_order/first_to_third_descriptive_summary.csv').exists(), 'N20/18/15 table cannot represent manuscript N19/19/15'
-    for filename,expected in (
-        ('figure6C_N19_19_15_all_available_summary.csv',[19,19,15]),
-        ('N19_18_15_two_event_display_summary.csv',[19,18,15]),
-    ):
-        rows=read_rows(REV/'data/response_order'/filename)
-        assert len(rows)==12 and len({r['roi_key'] for r in rows})==4
-        counts={int(r['button_order']):int(r['n']) for r in rows}
-        assert [counts[k] for k in (1,2,3)]==expected,filename
-        assert all(int(r['n'])==expected[int(r['button_order'])-1] for r in rows),filename
+    assert not (REV/'data/response_order/N19_18_15_two_event_display_summary.csv').exists(), 'Undisplayed variant is not a current-figure source'
+    rows=read_rows(REV/'data/response_order/figure6C_N19_19_15_all_available_summary.csv')
+    assert len(rows)==12 and len({r['roi_key'] for r in rows})==4
+    counts={int(r['button_order']):int(r['n']) for r in rows}
+    assert [counts[k] for k in (1,2,3)]==[19,19,15]
+    assert all(int(r['n'])==[19,19,15][int(r['button_order'])-1] for r in rows)
     interaction = [x for x in read_rows(REV/'data/first_response/contrast_summary.csv') if x['map_key']=='phase_pre_gt_search_CA_gt_JX']
     assert len(interaction)==1 and int(interaction[0]['n_significant_clusters'])>=1
     assert abs(float(interaction[0]['minimum_cluster_pFWE']) - 0.03592) < 1e-6
