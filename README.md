@@ -1,6 +1,6 @@
 # Haiku insight fMRI — revised-manuscript evidence
 
-**Local release candidate; not yet pushed.** This tree is aligned to the revised manuscript's Google Doc tab `t.0` (September 2026), not to the older May manuscript. See [`revision_2026_09/README.md`](revision_2026_09/README.md) for the exact seven embedded figures, model-specific scripts, and selected aggregate result tables. The separate [`unthresholded_tmaps/`](unthresholded_tmaps/) folder contains **12 signed, unthresholded N=19 group t-maps**, named by model and contrast. The 1-s *phase interaction* is excluded at the author's request; the 1-s Pre CA>JX sensitivity is retained.
+This tree is aligned to the revised manuscript's Google Doc tab `t.0` (September 2026), not to the older May manuscript. See [`revision_2026_09/README.md`](revision_2026_09/README.md) for the exact seven embedded figures, model-specific scripts, and selected aggregate result tables. The separate [`unthresholded_tmaps/`](unthresholded_tmaps/) folder contains **12 signed, unthresholded N=19 group t-maps**, named by model and contrast. The 1-s *phase interaction* is excluded at the author's request; the 1-s Pre CA>JX sensitivity is retained.
 
 ## Current analysis scope
 
@@ -23,6 +23,6 @@ python revision_2026_09/code/verify_release.py
 
 This validates figure and t-map hashes, map dimensions/sign/finiteness, public aggregate-table integrity, script syntax, and selected manuscript result landmarks. It is **not** a raw-to-results reproduction or a data-sharing/license certification.
 
-## Rights and publication gate
+## License and data-sharing scope
 
-The May README previously asserted CC BY 4.0 for data and code but the repository has no recognized `LICENSE` file. Whether that statement covers this revised tier has **not** been confirmed by the rights holder. New participant-level MRI/ROI/PPI/response-order data are excluded pending explicit public-sharing authorization. The local candidate must not be published until the rights/license scope and any required data-sharing approvals are resolved. Removing a file from the current Git tree does not erase its older public Git history.
+The authors authorize **Creative Commons Attribution 4.0 International (CC BY 4.0)** for the code and data in this revised repository; see [`LICENSE`](LICENSE) and the [license legal code](https://creativecommons.org/licenses/by/4.0/legalcode). Please attribute the MSense Lab haiku-insight-fMRI repository and identify changes when reusing licensed materials. This code/data grant does not assert rights in third-party dependencies or grant separate reuse rights for manuscript figure images. The existing N=19 individual Figure-3 behavioral RT inputs are retained with author approval; no new participant-level MRI/ROI/PPI/response-order inputs are included. Removing old material from the current tree does **not** erase previously published material from Git history.
