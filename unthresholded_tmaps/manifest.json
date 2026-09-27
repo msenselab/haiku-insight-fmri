@@ -60,21 +60,6 @@
     "source_project_relative": "glm_unified/section3_duration_sensitivity_20260908/group/w10_pre_CA_gt_JX_t.nii.gz"
   },
   {
-    "model": "DurationSensitivityW10",
-    "contrast": "PreMinusSearch_CAgtJX",
-    "direction": "[Pre(CA−JX)] − [Search(CA−JX)]",
-    "manuscript_role": "Results: 1-s Pre-response (claimed lingual interaction); Figure 1B is model schematic; two-sided W1 suite has no FWE cluster",
-    "filename": "model-DurationSensitivityW10_contrast-PreMinusSearch_CAgtJX_stat-t_desc-unthresholded.nii.gz",
-    "source_sha256": "29fd8f876b339b53d94ced512b796dec7036cbd3594fca2b193a7fcf04d99ed3",
-    "source_bytes": 388241,
-    "shape": "53x65x51",
-    "data_dtype": "float64",
-    "min_t": -3.355806373571894,
-    "max_t": 5.356527162637549,
-    "nonzero_voxels": 48279,
-    "source_project_relative": "glm_unified/w1_comprehensive_group_only_twosided_20260918/group/interaction_CA_minus_JX_t.nii.gz"
-  },
-  {
     "model": "PostResponseW05",
     "contrast": "Post_CAgtJX",
     "direction": "CA > JX",

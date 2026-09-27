@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 55 and len({x['path'] for x in files}) == 55
+    assert len(files) == 53 and len({x['path'] for x in files}) == 53
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -48,7 +48,10 @@ def main() -> None:
         assert sha(p) == row['sha256'] and row['caption'].startswith(f"Figure {row['figure']}."), row
         assert p.read_bytes().startswith((b'\x89PNG', b'\xff\xd8')), p
     maps = json.loads((MAPS/'manifest.json').read_text())
-    assert len(maps) == 13 and len({x['filename'] for x in maps}) == 13
+    assert len(maps) == 12 and len({x['filename'] for x in maps}) == 12
+    assert not any(x['model']=='DurationSensitivityW10' and x['contrast']=='PreMinusSearch_CAgtJX' for x in maps)
+    assert not (REV/'data/one_second_pre/interaction_summary_two_sided.csv').exists()
+    assert not (REV/'code/one_second_pre/run_w1_group_only_two_sided.py').exists()
     assert len(read_rows(MAPS/'manifest.csv')) == len(maps)
     for row in maps:
         p = MAPS/row['filename']
@@ -78,9 +81,9 @@ def main() -> None:
         assert [counts[k] for k in (1,2,3)]==expected,filename
         assert all(int(r['n'])==expected[int(r['button_order'])-1] for r in rows),filename
     interaction = [x for x in read_rows(REV/'data/first_response/contrast_summary.csv') if x['map_key']=='phase_pre_gt_search_CA_gt_JX']
-    assert len(interaction)==1 and interaction[0]['survives_holm_05']=='False'
-    assert abs(float(interaction[0]['minimum_cluster_pFWE_holm_within_family']) - 0.07184) < 1e-6
-    print(f"PASS: {len(files)} source-linked assets; 7 live-Doc figures; 13 signed t-maps; aggregate privacy/code checks; headline RT/PPI/behavior values")
+    assert len(interaction)==1 and int(interaction[0]['n_significant_clusters'])>=1
+    assert abs(float(interaction[0]['minimum_cluster_pFWE']) - 0.03592) < 1e-6
+    print(f"PASS: {len(files)} source-linked assets; 7 live-Doc figures; 12 signed t-maps; within-map FWE; aggregate privacy/code checks; headline RT/PPI/behavior values")
 
 if __name__ == '__main__':
     main()

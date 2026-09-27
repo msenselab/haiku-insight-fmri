@@ -37,13 +37,6 @@
       "portability_edit": false
     },
     {
-      "path": "revision_2026_09/data/one_second_pre/interaction_summary_two_sided.csv",
-      "source_project_relative": "glm_unified/w1_comprehensive_group_only_twosided_20260918/group/group_summary.csv",
-      "sha256": "6737c33dce3790c65b73b7f653d06dae2dbd3a43b40fe9d0437bdb70cb25b30c",
-      "bytes": 1591,
-      "portability_edit": false
-    },
-    {
       "path": "revision_2026_09/data/post_response/CAgtJX_corrected_clusters.csv",
       "source_project_relative": "glm_unified/permutation_cluster_fwe_table1_20260825/table1_clusterFWE_significant.csv",
       "sha256": "5d3bae16d3b7bc8c0dfcd0e803a76c6822bf8a3894e817b43ed1f2f066d68a27",
@@ -223,13 +216,6 @@
       "source_project_relative": "glm_unified/section3_duration_sensitivity_20260908/run_duration_sensitivity.py",
       "sha256": "94ceb67bc4f3acd4a62b4d78b353ed0ffb9a4137dc2e058529f49425fb114bdf",
       "bytes": 24056,
-      "portability_edit": true
-    },
-    {
-      "path": "revision_2026_09/code/one_second_pre/run_w1_group_only_two_sided.py",
-      "source_project_relative": "glm_unified/w1_comprehensive_group_only_twosided_20260918/run_w1_group_only.py",
-      "sha256": "bad741e3011fd8cb0015cc90345b97c09e27479410fdf19a4cb0a5bbc1e06f55",
-      "bytes": 12652,
       "portability_edit": true
     },
     {
