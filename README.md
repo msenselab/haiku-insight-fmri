@@ -5,7 +5,7 @@ This tree is aligned to the revised manuscript's Google Doc tab `t.0` (September
 ## Current analysis scope
 
 - Figures 1–2: model timing schematic and aggregate response counts.
-- Figure 3: first-response RT by CA/JX/OI. The embedded image is `revision_2026_09/figures/figure3.png`. The retained older `figures/figure1_behavioral_rt.png` has identical rendered pixels. Its existing public input/code are `code/01_behavioral_stats.py`, `code/01_plot_behavioral_rt_figure.py`, `data/behavioral/behavioral_rt.csv`, `data/behavioral/figure1_rt_subject_values.csv`, and `data/behavioral/figure1_rt_summary.csv`; higher-resolution source assets remain in `figures/source_panels/fig_behavioral_rt_first_insight_conditions*`. This is **existing public participant-level behavioral data**, not newly released participant-level coefficients.
+- Figure 3: first-response RT by CA/JX/OI. The embedded image is `revision_2026_09/figures/figure3.png`. The retained older `figures/figure1_behavioral_rt.png` has identical rendered pixels. Its existing public input/code are `code/01_behavioral_stats.py`, `code/01_plot_behavioral_rt_figure.py`, `data/behavioral/behavioral_rt.csv`, `data/behavioral/figure1_rt_subject_values.csv`, and `data/behavioral/figure1_rt_summary.csv`; higher-resolution source assets remain in `figures/source_panels/fig_behavioral_rt_first_insight_conditions*`. This is **existing public participant-level behavioral data**, not newly released participant-level coefficients. Run the plotting script without an output override to regenerate into a fresh temporary directory; `HAIKU_FIGURE3_OUTPUT_DIR` can select a destination **outside** this checkout, preserving the tracked original image/PDF/CSV.
 - Figures 4–6: revised Search/Pre-response, multiple-response, and response-order activation. Whole-brain inferences use permutation **cluster FWE within each contrast map** (not across-map Holm). Figure 6C's descriptive participant traces are captured in the exact Doc image; the *displayed* 19/19/15 aggregate source summary is in `revision_2026_09/data/response_order/`. The valid but undisplayed 19/18/15 variant is retained only in the internal project. Figure 6C is post-selection description, not a second inferential test.
 - Figure 7: exploratory condition-specific gPPI. Its coefficient tests and targeted correction are distinct from whole-brain map inference. The release includes aggregate gPPI tables but no new participant-level gPPI vectors.
 
@@ -22,6 +22,8 @@ python revision_2026_09/code/verify_release.py
 ```
 
 This validates figure and t-map hashes, map dimensions/sign/finiteness, public aggregate-table integrity, script syntax, and selected manuscript result landmarks. It is **not** a raw-to-results reproduction or a data-sharing/license certification.
+
+**Manuscript scope note:** The live manuscript still describes a 1-s phase interaction and a three-phase across-map Holm result, and its data/code-availability sentence is broader than this selected public package. Those claims are **not supported by this release**. The 1-s interaction is deliberately omitted; whole-brain inference in this package is within-map cluster FWE only. The manuscript must be separately reconciled before describing this checkout as a complete reproduction of all manuscript claims.
 
 ## License and data-sharing scope
 

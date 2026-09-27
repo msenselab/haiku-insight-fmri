@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """N19 group-only condition-specific gPPI readback, two targets/two phases."""
 from pathlib import Path
+import os
 import hashlib,json
 import numpy as np,pandas as pd
 from scipy.stats import t as student_t
-O=Path(__file__).resolve().parent;R=O.parent
+O=Path(os.environ['HAIKU_PROJECT_ROOT']).resolve()/'glm_unified/connectivity_analysis/ppi_precuneus_angular_historicalpeak_condition_specific_n19_20260923';R=O.parent
+if Path(__file__).resolve().parents[3] in O.parents:
+ raise RuntimeError('Analysis output must be outside the public checkout')
 S={'angular_historical':R/'ppi_precuneus_angular_historicalpeak_firstfinal_n20n18_20260923/participant_coefficients.csv','ofc_left':R/'ppi_precuneus_angular_ofc_condition_firstfinal_n20_20260922/participant_coefficients.csv'}
 H={'angular_historical':'258a0b81252ca162c36f549d78ff3705a626384c4f0998c7423955971a8f1e66','ofc_left':'f9cbc137416fff8c3c267c8be4ec001afc4dde7034b6fb0a869085647ac459ff'}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()

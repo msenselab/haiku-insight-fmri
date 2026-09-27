@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Source-locked M2 Pre 3-mm grid/physical spheres and Post physical sensitivity."""
-import csv, hashlib, json
+import csv, hashlib, json, os
 from pathlib import Path
 import nibabel as nib
 import numpy as np
-HERE=Path(__file__).resolve().parent
+HERE=Path(os.environ['HAIKU_PROJECT_ROOT']).resolve()/'glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924'
+if Path(__file__).resolve().parents[3] in HERE.parents:
+ raise RuntimeError('Analysis output must be outside the public checkout')
 GLM=HERE.parents[1]
 M2=GLM/'roi_behavior_analysis/joint_m2_three_peaks_20260915'
 SOURCE=GLM/'insight_event_timing_sensitivity/joint_search_pre_phase_contrasts_20260831'

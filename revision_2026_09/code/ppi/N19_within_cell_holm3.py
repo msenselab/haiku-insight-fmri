@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Re-index four N19 target×phase families without refitting."""
 from pathlib import Path
+import os
 import hashlib,json
 import pandas as pd
 from statsmodels.stats.multitest import multipletests
-O=Path(__file__).resolve().parent; R=O.parent
+O=Path(os.environ['HAIKU_PROJECT_ROOT']).resolve()/'glm_unified/connectivity_analysis/ppi_historical_angular_n19_within_coupling_interval_holm3_20260923'; R=O.parent
+if Path(__file__).resolve().parents[3] in O.parents:
+ raise RuntimeError('Analysis output must be outside the public checkout')
 C=R/'ppi_precuneus_angular_historicalpeak_condition_specific_n19_20260923'; E=R/'ppi_precuneus_angular_historicalpeak_cajxavg_gt_oi_n19_20260923'
 P={'coefficients':C/'group_coefficients.csv','pairwise':C/'group_pairwise.csv','omnibus':C/'group_omnibus.csv','composite':E/'group_results.csv'}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()

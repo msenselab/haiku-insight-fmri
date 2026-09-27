@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Both models at matched nominal seven-voxel 3mm, with five-voxel physical sensitivity."""
-import csv, hashlib, json
+import csv, hashlib, json, os
 from collections import defaultdict
 from pathlib import Path
 import numpy as np
 from scipy.stats import pearsonr,norm
 from statsmodels.stats.multitest import multipletests
-HERE=Path(__file__).resolve().parent;GLM=HERE.parents[1];M2=GLM/'roi_behavior_analysis/joint_m2_three_peaks_20260915'
+HERE=Path(os.environ['HAIKU_PROJECT_ROOT']).resolve()/'glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924';GLM=HERE.parents[1];M2=GLM/'roi_behavior_analysis/joint_m2_three_peaks_20260915'
+if Path(__file__).resolve().parents[3] in HERE.parents:
+ raise RuntimeError('Analysis output must be outside the public checkout')
 CONDS=('CA','JX','OI');ROIS=('angular','precuneus');PHASES=('pre','post');OUTCOMES=('rt','reports')
 SEED=20260924;B=50000
 def read(p):

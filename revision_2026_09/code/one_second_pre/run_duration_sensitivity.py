@@ -5,7 +5,12 @@ Raw parser adapted from validated rawlog_phases and phase_extension runners.
 """
 from pathlib import Path
 import os
-OUT=Path(__file__).resolve().parent
+ROOT=Path(os.environ["HAIKU_PROJECT_ROOT"]).resolve()
+OUT=ROOT/'glm_unified/section3_duration_sensitivity_20260908'
+if Path(__file__).resolve().parents[3] in OUT.parents:
+    raise RuntimeError('Analysis output must be outside the public checkout')
+if not (OUT/'FROZEN_PLAN.md').is_file():
+    raise FileNotFoundError('Protected source analysis/FROZEN_PLAN.md is required before writing outputs')
 for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS','VECLIB_MAXIMUM_THREADS'):
     os.environ[key]='1'
 for key, val in {'TMPDIR':OUT/'tmp','JOBLIB_TEMP_FOLDER':OUT/'tmp','XDG_CACHE_HOME':OUT/'cache','NILEARN_DATA':OUT/'cache/nilearn'}.items():
@@ -19,7 +24,6 @@ import scipy
 from scipy import ndimage, stats
 from nilearn.glm.first_level import FirstLevelModel, make_first_level_design_matrix
 from nilearn.glm.second_level import SecondLevelModel, non_parametric_inference
-ROOT=Path(os.environ["HAIKU_PROJECT_ROOT"])
 BASE=ROOT/'glm_unified'
 CANON=BASE/'insight_event_timing_sensitivity/joint_search_pre_phase_contrasts_20260831'
 BEHAVIOR=ROOT/'manuscript/behavioral_analysis/behavioral_data_all_subjects.csv'

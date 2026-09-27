@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Independent NIfTI/checkpoint readback for both 3-mm rules, all 24 tests, four contrasts."""
-import csv,hashlib,json
+import csv,hashlib,json,os
 from pathlib import Path
 import numpy as np,nibabel as nib
 from scipy.stats import pearsonr,norm
 from statsmodels.stats.multitest import multipletests
-HERE=Path(__file__).resolve().parent;GLM=HERE.parents[1];M2=GLM/'roi_behavior_analysis/joint_m2_three_peaks_20260915'
+HERE=Path(os.environ['HAIKU_PROJECT_ROOT']).resolve()/'glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924';GLM=HERE.parents[1];M2=GLM/'roi_behavior_analysis/joint_m2_three_peaks_20260915'
+if Path(__file__).resolve().parents[3] in HERE.parents:
+ raise RuntimeError('Analysis output must be outside the public checkout')
 read=lambda path:list(csv.DictReader(path.open(newline='')))
 sha=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
 e=json.loads((HERE/'EXTRACTION_PROVENANCE.json').read_text());m=json.loads((HERE/'PROVENANCE.json').read_text())

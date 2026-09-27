@@ -214,8 +214,8 @@
     {
       "path": "revision_2026_09/code/one_second_pre/run_duration_sensitivity.py",
       "source_project_relative": "glm_unified/section3_duration_sensitivity_20260908/run_duration_sensitivity.py",
-      "sha256": "94ceb67bc4f3acd4a62b4d78b353ed0ffb9a4137dc2e058529f49425fb114bdf",
-      "bytes": 24056,
+      "sha256": "b7caab79b7e2d3e7fd1bbd2941453f562797557004117c576a52923b4cf82e42",
+      "bytes": 24373,
       "portability_edit": true
     },
     {
@@ -263,30 +263,30 @@
     {
       "path": "revision_2026_09/code/roi/extract_prepost_matched.py",
       "source_project_relative": "glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924/extract.py",
-      "sha256": "7250f4eb418d022fb969c08b714ae2fac7183b3c07b9529f7e842752326ae7a7",
-      "bytes": 6710,
-      "portability_edit": false
+      "sha256": "32261ecc60ff4a036b2688a10187233efd062cbccce01a999ee7f555864ddb69",
+      "bytes": 6926,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/code/roi/analyze_prepost_matched.py",
       "source_project_relative": "glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924/analyze.py",
-      "sha256": "d52de16897f4ebcf33340fa51a2516113f6c86edec8a580808cbad03e63138d7",
-      "bytes": 5153,
-      "portability_edit": false
+      "sha256": "c70c20599789308b93a4f766d8894209f524b96663df75617508507a24eb372c",
+      "bytes": 5369,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/code/roi/verify_prepost_matched.py",
       "source_project_relative": "glm_unified/roi_behavior_analysis/prepost_matched3mm_20260924/verify_results.py",
-      "sha256": "14685fa422f88c2bb74565589fa78e5b1d34e1a4ad47c4c05922e57478e81299",
-      "bytes": 7072,
-      "portability_edit": false
+      "sha256": "eca7da4ca232d9829729376b21536f91fc3a822154ff501eeba8afde35a04bf1",
+      "bytes": 7287,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/code/ppi/N19_group_readback.py",
       "source_project_relative": "glm_unified/connectivity_analysis/ppi_precuneus_angular_historicalpeak_condition_specific_n19_20260923/run_analysis.py",
-      "sha256": "77602e109f53075dfa199b5cdb55f322efc3dc9a2caa0376bbb19eebaa9e241a",
-      "bytes": 4600,
-      "portability_edit": false
+      "sha256": "bbe01d53b4306af9de8438d214fc13c5054c874465af5691baa35a3ff20f40c6",
+      "bytes": 4860,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/code/ppi/N19_group_verify.py",
@@ -298,16 +298,16 @@
     {
       "path": "revision_2026_09/code/ppi/N19_within_cell_holm3.py",
       "source_project_relative": "glm_unified/connectivity_analysis/ppi_historical_angular_n19_within_coupling_interval_holm3_20260923/run_analysis.py",
-      "sha256": "0046b9977f3f58b60c800de26cdf0da8db85b92e1b3746e1a9c6cbe2a46dee27",
-      "bytes": 2933,
-      "portability_edit": false
+      "sha256": "fb95191797a81f6ff5f4c9fc0567811fb32e1bbd6cf73af91bf87cbb056304a1",
+      "bytes": 3191,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/code/ppi/N19_two_image_composite.py",
       "source_project_relative": "glm_unified/connectivity_analysis/ppi_precuneus_angular_historicalpeak_cajxavg_gt_oi_n19_20260923/run_analysis.py",
-      "sha256": "4f371e0fccbe09caf5c0a17583e79c4c5fc36ad838d313d650da2d3f65f5d42e",
-      "bytes": 3201,
-      "portability_edit": false
+      "sha256": "366cbb5eb20c63e367ae786e875d06fa5a0edf164363ef35182c09964a5c6bab",
+      "bytes": 3456,
+      "portability_edit": true
     },
     {
       "path": "revision_2026_09/figures/figure1.png",

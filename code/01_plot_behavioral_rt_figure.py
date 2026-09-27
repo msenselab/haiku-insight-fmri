@@ -7,6 +7,8 @@ ANOVA / Bonferroni-corrected pairwise comparisons.
 """
 
 from pathlib import Path
+import os
+import tempfile
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,7 +16,9 @@ from scipy import stats
 
 RELEASE = Path(__file__).resolve().parents[1]
 DATA = RELEASE / 'data' / 'behavioral' / 'behavioral_rt.csv'
-OUTDIR = RELEASE / 'figures' / 'source_panels'
+OUTDIR = Path(os.environ['HAIKU_FIGURE3_OUTPUT_DIR']).expanduser().resolve() if os.environ.get('HAIKU_FIGURE3_OUTPUT_DIR') else Path(tempfile.mkdtemp(prefix='haiku-figure3-', dir=os.environ.get('TMPDIR')))
+if RELEASE == OUTDIR or RELEASE in OUTDIR.parents:
+    raise RuntimeError('Regeneration output must be outside the public checkout')
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
 PNG = OUTDIR / 'fig_behavioral_rt_first_insight_conditions.png'

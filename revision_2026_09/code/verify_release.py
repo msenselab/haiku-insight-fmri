@@ -32,6 +32,24 @@ def main() -> None:
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
+    # These are the only inherited participant-level release inputs, expressly
+    # retained for unchanged Figure 3; do not mistake the new tier for raw data.
+    inherited = ROOT/'data/behavioral'
+    assert {p.name for p in inherited.iterdir() if p.is_file()} == {
+        'behavioral_rt.csv','behavioral_stats_n19.csv',
+        'figure1_rt_subject_values.csv','figure1_rt_summary.csv',
+    }
+    assert len(read_rows(inherited/'behavioral_rt.csv')) == 19
+    assert len(read_rows(inherited/'figure1_rt_subject_values.csv')) == 57
+    assert {p.name for p in (ROOT/'code').iterdir() if p.is_file()} == {
+        '01_behavioral_stats.py','01_plot_behavioral_rt_figure.py',
+    }
+    for name in ('01_behavioral_stats.py','01_plot_behavioral_rt_figure.py'):
+        script=ROOT/'code'/name
+        compile(script.read_text(), str(script), 'exec')
+    assert not any(any(p.is_file() for p in (ROOT/'data'/name).rglob('*')) for name in
+                   ('granger','ppi','group_zmaps','roi','wholebrain','connectivity','mediation','brain_behavior'))
+    assert not (ROOT/'reports').exists()
     for row in files:
         p = ROOT / row['path']
         assert p.is_file() and sha(p) == row['sha256'] and p.stat().st_size == row['bytes'], row['path']
@@ -42,6 +60,12 @@ def main() -> None:
             text = p.read_text()
             compile(text, str(p), 'exec')
             assert '/dss/' not in text and '/home/' not in text, row['path']
+            if any(row['path'].endswith('/'+name) for name in (
+                'run_duration_sensitivity.py','N19_group_readback.py',
+                'N19_two_image_composite.py','N19_within_cell_holm3.py',
+                'extract_prepost_matched.py','analyze_prepost_matched.py',
+                'verify_prepost_matched.py')):
+                assert 'Analysis output must be outside the public checkout' in text
     for row in figure_meta['figures']:
         p = REV/'figures'/row['filename']
         assert 'inline_object_id' not in row
