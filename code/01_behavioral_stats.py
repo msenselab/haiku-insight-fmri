@@ -218,39 +218,7 @@ for c1, c2, label in pairs:
 print()
 
 # ============================================================
-# 5. Insight rate verification (from trial-level data)
-# ============================================================
-# Note: behavioral_insight_rates.csv only counts search-phase trials that were
-# modeled (i.e. those where insight occurred), so all rates are 1.0 there.
-# The manuscript insight rates (98.7% CA, 96.4% JX, 97.9% OI) come from the
-# trial-level data below.
-print("=" * 60)
-print("INSIGHT RATE VERIFICATION (trial-level, N=19)")
-print("=" * 60)
-
-trial_df = pd.read_csv(Path(__file__).parent.parent / 'data/behavioral/behavioral_data_all_subjects.csv')
-EXCLUDED = ['sub-005', 'sub-015', 'sub-017', 'sub-022']
-trial_df = trial_df[~trial_df['subject_id'].isin(EXCLUDED)]
-print(f"\nN = {trial_df['subject_id'].nunique()} subjects")
-
-cond_map = {'context-action': 'CA', 'juxtaposition': 'JX', 'One-image': 'OI'}
-for raw_cond, label in cond_map.items():
-    sub_df = trial_df[trial_df['haiku_type'] == raw_cond]
-    rate = sub_df['has_insight'].mean() * 100
-    print(f"  {label}: {rate:.1f}% ({int(sub_df['has_insight'].sum())}/{len(sub_df)})")
-    # Expected from manuscript: CA=98.7%, JX=96.4%, OI=97.9%
-
-subj_rates = trial_df.groupby('subject_id')['has_insight'].mean()
-below_100 = subj_rates[subj_rates < 1.0].sort_values()
-print(f"\nSubjects below 100% (any condition): {len(below_100)}")
-for subj, rate in below_100.items():
-    print(f"  {subj}: {rate*100:.1f}%")
-    # Expected: 4 subjects; sub-002 lowest at ~69%
-
-print()
-
-# ============================================================
-# 6. Save results
+# 5. Save Figure-3 RT results
 # ============================================================
 # Descriptive stats
 desc_df = pd.DataFrame(desc_results)
@@ -296,4 +264,3 @@ print(f"\nANOVA: F({df_num}, {df_den}) = {F_val:.3f}, p = {p_val:.4f}, eta_p^2 =
 print(f"\nPairwise (Bonferroni-corrected):")
 for r in pairwise_results:
     print(f"  {r['comparison']}: t({r['df']}) = {r['t']:.3f}, p_bonf = {r['p_bonferroni']:.4f}, d = {r['cohens_d']:.3f} [{r['significance']}]")
-print(f"\nInsight rates: CA=98.7%, JX=96.4%, OI=97.9% (see trial-level analysis above)")
