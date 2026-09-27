@@ -1,6 +1,6 @@
 # Haiku insight fMRI — revised-manuscript evidence
 
-This tree is aligned to the revised manuscript's Google Doc tab `t.0` (September 2026), not to the older May manuscript. See [`revision_2026_09/README.md`](revision_2026_09/README.md) for the exact seven embedded figures, model-specific scripts, and selected aggregate result tables. The separate [`unthresholded_tmaps/`](unthresholded_tmaps/) folder contains **12 signed, unthresholded N=19 group t-maps**, named by model and contrast. The 1-s *phase-interaction code* is retained as provenance, but its t-map is not included in this findings-focused set; the 1-s Pre CA>JX sensitivity map is retained.
+This tree is aligned to the revised manuscript's Google Doc tab `t.0` (September 2026), not to the older May manuscript. See [`revision_2026_09/README.md`](revision_2026_09/README.md) for the exact seven embedded figures, model-specific scripts, and selected aggregate result tables. The separate [`unthresholded_tmaps/`](unthresholded_tmaps/) folder contains **12 signed, unthresholded N=19 group t-maps**, named by model and contrast. The null later two-sided 1-s *phase-interaction code/map/table* are excluded from the current release; the separate 1-s Pre CA>JX sensitivity code and map are retained.
 
 ## Current analysis scope
 
@@ -23,7 +23,7 @@ python revision_2026_09/code/verify_release.py
 
 This validates figure and t-map hashes, map dimensions/sign/finiteness, public aggregate-table integrity, script syntax, and selected manuscript result landmarks. It is **not** a raw-to-results reproduction or a data-sharing/license certification.
 
-**Manuscript scope note:** Main whole-brain findings in this package use **within-map cluster FWE**; no cross-map Holm gate is imposed on them. The separate three-phase supplementary account retains its historical family-A/B map-minimum Holm columns. The live manuscript also describes a 1-s phase interaction, but the archived **later two-sided** group-only runner now included as code found no surviving interaction cluster (minimum within-map *p*FWE=.08844 for CA–JX); this code is not evidence for the manuscript's positive 1-s statement. The selected package lacks protected input data needed to rerun all analyses, while the manuscript's data/code-availability sentence is broader. Reconcile that claim and the 1-s inference source before calling this checkout a complete reproduction of the manuscript.
+**Manuscript scope note:** Main whole-brain findings in this package use **within-map cluster FWE**; no cross-map Holm gate is imposed on them. The separate three-phase supplementary account retains its historical family-A/B map-minimum Holm columns. The live manuscript also describes a positive 1-s phase interaction, but the archived later **two-sided** group-only analysis found no surviving CA–JX cluster (minimum within-map *p*FWE=.08844). At the author's request, that interaction's code/map/table are not included in the current release; the positive manuscript statement remains unreconciled. The selected package lacks protected input data needed to rerun all analyses, while the manuscript's data/code-availability sentence is broader. Reconcile that claim and the 1-s inference source before calling this checkout a complete reproduction of the manuscript.
 
 ## License and data-sharing scope
 

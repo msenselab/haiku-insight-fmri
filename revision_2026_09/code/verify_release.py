@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 53 and len({x['path'] for x in files}) == 53
+    assert len(files) == 52 and len({x['path'] for x in files}) == 52
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -61,7 +61,7 @@ def main() -> None:
             compile(text, str(p), 'exec')
             assert '/dss/' not in text and '/home/' not in text, row['path']
             if any(row['path'].endswith('/'+name) for name in (
-                'run_duration_sensitivity.py','run_w1_group_only_two_sided.py','N19_group_readback.py',
+                'run_duration_sensitivity.py','N19_group_readback.py',
                 'N19_two_image_composite.py','N19_within_cell_holm3.py',
                 'extract_prepost_matched.py','analyze_prepost_matched.py',
                 'verify_prepost_matched.py')):
@@ -75,8 +75,8 @@ def main() -> None:
     assert len(maps) == 12 and len({x['filename'] for x in maps}) == 12
     assert not any(x['model']=='DurationSensitivityW10' and x['contrast']=='PreMinusSearch_CAgtJX' for x in maps)
     assert not (REV/'data/one_second_pre/interaction_summary_two_sided.csv').exists()
-    w1_script=REV/'code/one_second_pre/run_w1_group_only_two_sided.py'
-    assert w1_script.is_file() and "key=f'interaction_{a}_minus_{b}'" in w1_script.read_text()
+    assert not (REV/'code/one_second_pre/run_w1_group_only_two_sided.py').exists()
+    assert (REV/'code/one_second_pre/run_duration_sensitivity.py').is_file()
     assert len(read_rows(MAPS/'manifest.csv')) == len(maps)
     for row in maps:
         p = MAPS/row['filename']
