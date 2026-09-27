@@ -1,0 +1,47 @@
+{
+  "tab_id": "t.0",
+  "figures": [
+    {
+      "figure": 1,
+      "filename": "figure1.png",
+      "sha256": "f2ac0f3dd37456fe66780ad9b2b90f0d21140759d09ab9a6b85bd7d34d4a4794",
+      "caption": "Figure 1. Schematic overview of the whole-brain GLM designs and temporal epochs. (A) Primary First-Response Search–Insight model, in which Search extended from poem onset to 0.5 s before the first reported insight and the Pre-response window comprised the final 0.5 s before the response. (B) Sensitivity model using a 1-s Pre-response window. (C) Sensitivity model examining the first 0.5 s after the initial response, with Search modeled from poem onset to the response. (D) Complementary Onset-to-First-Response model. Activity was modeled continuously from poem onset to the first reported response, with condition-specific centered RT modulators and no separate Pre-response regressor. This specification differs from the primary model in both temporal segmentation and RT modulation. (E) Multiple-Response Search–Insight model extending the joint model to up to the first three recorded responses per presentation, with separate Search intervals and 0.5-s Pre-response windows preceding each retained response. Colored segments indicate the modeled temporal epochs; vertical markers indicate reported insight responses."
+    },
+    {
+      "figure": 2,
+      "filename": "figure2.png",
+      "sha256": "90d71a973df8f1da858ad074112d8c782af5cb2724a45188bcfa52de7b5f7171",
+      "caption": "Figure 2. Distribution of insight responses across poem presentations. Number of button responses recorded per presentation in the raw-complete dataset (N = 19 participants; 798 presentations; 1,891 responses). Bars indicate the number of presentations associated with each response count, with labels showing the corresponding frequency and percentage of all presentations. Most presentations contained two or three responses (reflecting two or three reading passes), whereas presentations with more than four responses were comparatively rare."
+    },
+    {
+      "figure": 3,
+      "filename": "figure3.png",
+      "sha256": "6303cfaa1733b129db7fe0c82524cb54519ee091ef7bbbf299c35ecf20e326f5",
+      "caption": "Figure 3. Reaction time (RT) to first insight across haiku types. Dots show individual participants’ mean RTs for each haiku type, with grey lines connecting repeated measurements from the same participant. Black points and error bars indicate the group mean ± SEM."
+    },
+    {
+      "figure": 4,
+      "filename": "figure4.png",
+      "sha256": "44e0843ad8ca2b7532d73ccd3915235e25d7125734b331e460383d6bb15fe120",
+      "caption": "Figure 4. Whole-brain activation patterns across Search and Insight phases using the First-Response Search–Insight Model. (A) CA > JX during Insight involved left angular gyrus, precuneus, and lingual gyrus; Search showed JX > OI in posterior visual/lingual cortex. The Insight − Search CA−JX interaction identified a lingual-gyrus effect. Colors indicate t. (B) Mean first-level beta estimates extracted from a lingual-gyrus peak sphere centered at MNI [−12, −60, −12], separately for Search and Insight periods and for context–action (CA), juxtaposition (JX), and one-image (OI) haiku. (C) Brain–behavior associations at the post-response angular gyrus peak. Greater CA activity was associated with shorter mean first-report RT (r = −.668, raw p = .0018, pHolm = .0053). Points represent individual participants; lines show condition-specific linear regression fits with 95% confidence intervals. Orange circles denote CA, purple squares JX, and gray triangles OI."
+    },
+    {
+      "figure": 5,
+      "filename": "figure5.jpg",
+      "sha256": "f68dad52db1759263fc1f38b2d8d32d5faebb243eac5e886ef23020739db21eb",
+      "caption": "Figure 5. Whole-brain activation patterns across Search and Insight phases in the Multiple-Response Search–Insight Model. Insight CA > JX involved posterior visual and frontal regions, Search JX > OI involved left superior temporal–opercular/peri-insular cortex, and Insight OI > JX involved PCC, posterior visual, temporal/opercular, IFG, LOC, and frontal-pole regions. The corresponding OI−JX phase interaction involved posterior visual, opercular, and inferior frontal/temporal regions. Slice coordinates are in MNI space; colors indicate t. Abbreviations: COp, central opercular cortex; FPole, frontal pole; IFG, inferior frontal gyrus; LOC, lateral occipital cortex; OFC, orbitofrontal cortex; PCC, posterior cingulate cortex; PlanPol, planum polare; PlanT, planum temporale."
+    },
+    {
+      "figure": 6,
+      "filename": "figure6.png",
+      "sha256": "045beb0b1bf17334b19500d3d17a65b2301fe10a5107be84e2e37910bc03875f",
+      "caption": "Figure 6. Response-order effects on Search-related activity. (A) Regions showing greater activity during the final than first Search interval, controlling for haiku condition. (B) Regions showing greater activity during the first than final Search interval. Whole-brain inferential analyses were conducted in the imaging sample (N = 19). (C) Descriptive response-order profiles extracted from selected peaks, showing modeled Search coefficients for the first, second, and third search intervals. Gray lines indicate participant-level trajectories and colored points indicate group means with error bars; the number of participants contributing to each ordinal position is shown above the corresponding point. The second interval constitutes the final interval for two-response presentations, but an intermediate interval for three-response presentations; accordingly, these profiles illustrate the progression of activity across response order, rather than constituting the inferential First-versus-Final test. Order effects were pooled across haiku conditions."
+    },
+    {
+      "figure": 7,
+      "filename": "figure7.jpg",
+      "sha256": "47b0158f464a2f422796dae6f4a7e96a584c2a6f1031f0846940ba082b0f3bee",
+      "caption": "Figure 7. Condition-specific precuneus coupling during the First and Final response intervals. Generalized psychophysiological interaction (gPPI) coefficients are shown for coupling between a precuneus seed and (A) left angular gyrus and, respectively, (B) left orbitofrontal cortex (OFC) in the CA, JX, and OI conditions. Both interval regressors extended to the respective raw button presses, including the final 0.5 s modeled separately as Pre-response in the activation GLM. Bars represent group means, error bars indicate unadjusted 95% confidence intervals, and symbols show individual-participant estimates. First- and Final-interval coefficients were obtained from separate models. Asterisks indicate coefficient-vs.-zero tests, with Holm correction across the three conditions separately within each target × interval combination: *pHolm < .05, **pHolm < .01, ***pHolm < .001. These annotations do not indicate condition differences or First-to-Final changes."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+roi,coordinate,model,condition,n,mean_pre_minus_search,sd_pre_minus_search
+Lingual peak sphere,"MNI [−12, −60, −12]",whole_search,CA,19,0.7241313885525935,1.423690049657658
+Lingual peak sphere,"MNI [−12, −60, −12]",whole_search,JX,19,-0.2550105699353747,1.3221106606655568
+Lingual peak sphere,"MNI [−12, −60, −12]",whole_search,OI,19,-0.00254849739905623,2.188643413449178
+Precuneus peak sphere,"MNI [−6, −54, 40.8]",early_1s,CA,19,1.100565394472392,2.05016259948167
+Precuneus peak sphere,"MNI [−6, −54, 40.8]",early_1s,JX,19,-0.6922077947049622,1.8059669199401422
+Precuneus peak sphere,"MNI [−6, −54, 40.8]",early_1s,OI,19,-0.9689285351529696,2.5342010934659793

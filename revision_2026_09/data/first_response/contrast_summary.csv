@@ -1,0 +1,10 @@
+map_key,map_label,n_cdt_clusters,n_significant_clusters,minimum_cluster_pFWE,random_seed,family,family_size,minimum_cluster_pFWE_holm_within_family,survives_holm_05
+pre_CA_gt_JX,Pre-response CA > JX,137,3,0.024179999999999983,20260831,pre_planned,2,0.048359999999999966,True
+pre_CA_gt_OI,Pre-response CA > OI,27,0,0.14998,20261840,pre_planned,2,0.14998,False
+pre_JX_gt_OI,Pre-response JX > OI,0,0,1.0,20262849,exploratory_JX_gt_OI,3,1.0,False
+search_CA_gt_JX,Search CA > JX,0,0,1.0,20263858,search_secondary,2,1.0,False
+search_CA_gt_OI,Search CA > OI,5,0,0.36012,20264867,search_secondary,2,0.72024,False
+search_JX_gt_OI,Search JX > OI,5,1,0.00907999999999998,20265876,exploratory_JX_gt_OI,3,0.02723999999999994,True
+phase_pre_gt_search_CA_gt_JX,[Pre CA−JX] > [Search CA−JX],104,1,0.035919999999999945,20266885,phase_specificity,2,0.07183999999999989,False
+phase_pre_gt_search_CA_gt_OI,[Pre CA−OI] > [Search CA−OI],22,0,0.11943999999999998,20267894,phase_specificity,2,0.11943999999999998,False
+phase_pre_gt_search_JX_gt_OI,[Pre JX−OI] > [Search JX−OI],0,0,1.0,20268903,exploratory_JX_gt_OI,3,1.0,False

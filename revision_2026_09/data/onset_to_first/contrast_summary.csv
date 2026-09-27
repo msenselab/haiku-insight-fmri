@@ -1,0 +1,3 @@
+map_key,contrast,cdt_clusters,within_map_fwe_clusters,minimum_cluster_pFWE,constant_zero_voxels_fixed_mask,manual_t_max_abs_error,permutation_t_max_abs_error_nonconstant_voxels,holm_p_across_two_search_CA_maps,survives_two_map_holm_05
+CA_gt_JX,Search CA > JX,62,4,0.02814000000000005,91,2.6645352591003757e-15,4.440892098500626e-15,0.0562800000000001,False
+CA_gt_OI,Search CA > OI,33,0,0.08897999999999995,91,2.4424906541753444e-15,4.440892098500626e-15,0.08897999999999995,False

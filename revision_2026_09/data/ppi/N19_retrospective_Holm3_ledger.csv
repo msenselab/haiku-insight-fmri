@@ -1,0 +1,33 @@
+target,phase,test_kind,contrast,n,raw_p,within_cell_family_size,holm_within_cell,prior_broad_family_adjusted
+angular_historical,first,coefficient_vs_zero,CA,19,0.023445129394531201,3,0.046890258789062403,0.18756103515625
+angular_historical,first,coefficient_vs_zero,JX,19,2.288818359375e-05,3,6.866455078125e-05,0.000274658203125
+angular_historical,first,coefficient_vs_zero,OI,19,0.17650604248046869,3,0.17650604248046869,0.88253021240234375
+angular_historical,first,pairwise_condition,CA_minus_JX,19,0.877044677734375,3,0.877044677734375,1
+angular_historical,first,pairwise_condition,CA_minus_OI,19,0.088615417480468694,3,0.26584625244140608,0.97476959228515625
+angular_historical,first,pairwise_condition,JX_minus_OI,19,0.15598678588867179,3,0.31197357177734358,1
+angular_historical,first,two_dimensional_condition_omnibus,CA-JX and CA-OI,19,0.1705207824707031,1,0.1705207824707031,0.6820831298828125
+angular_historical,first,posthoc_one_sided_composite,(CA+JX)/2-OI,19,0.031980514526367097,1,0.031980514526367097,0.12297821044921869
+angular_historical,final,coefficient_vs_zero,CA,19,0.0124893188476562,3,0.024978637695312399,0.11240386962890619
+angular_historical,final,coefficient_vs_zero,JX,19,0.00034332275390620002,3,0.0010299682617185999,0.0037765502929687001
+angular_historical,final,coefficient_vs_zero,OI,19,0.22896575927734369,3,0.22896575927734369,0.915863037109375
+angular_historical,final,pairwise_condition,CA_minus_JX,19,0.58861160278320312,3,0.83863067626953125,1
+angular_historical,final,pairwise_condition,CA_minus_OI,19,0.41931533813476562,3,0.83863067626953125,1
+angular_historical,final,pairwise_condition,JX_minus_OI,19,0.187255859375,3,0.561767578125,1
+angular_historical,final,two_dimensional_condition_omnibus,CA-JX and CA-OI,19,0.43082427978515619,1,0.43082427978515619,0.8616485595703125
+angular_historical,final,posthoc_one_sided_composite,(CA+JX)/2-OI,19,0.12749862670898429,1,0.12749862670898429,0.25499725341796869
+ofc_left,first,coefficient_vs_zero,CA,19,0.84975433349609375,3,1,1
+ofc_left,first,coefficient_vs_zero,JX,19,0.035167694091796799,3,0.1055030822753904,0.2461738586425781
+ofc_left,first,coefficient_vs_zero,OI,19,0.7917022705078125,3,1,1
+ofc_left,first,pairwise_condition,CA_minus_JX,19,0.35875701904296869,3,1,1
+ofc_left,first,pairwise_condition,CA_minus_OI,19,0.93198013305664062,3,1,1
+ofc_left,first,pairwise_condition,JX_minus_OI,19,0.37347030639648432,3,1,1
+ofc_left,first,two_dimensional_condition_omnibus,CA-JX and CA-OI,19,0.52647781372070312,1,0.52647781372070312,0.8616485595703125
+ofc_left,first,posthoc_one_sided_composite,(CA+JX)/2-OI,19,0.3518524169921875,1,0.3518524169921875,0.3518524169921875
+ofc_left,final,coefficient_vs_zero,CA,19,0.13071441650390619,3,0.26142883300781239,0.7842864990234375
+ofc_left,final,coefficient_vs_zero,JX,19,0.0076141357421875,3,0.0228424072265625,0.076141357421875
+ofc_left,final,coefficient_vs_zero,OI,19,0.88884353637695312,3,0.88884353637695312,1
+ofc_left,final,pairwise_condition,CA_minus_JX,19,0.3039703369140625,3,0.37858581542968739,1
+ofc_left,final,pairwise_condition,CA_minus_OI,19,0.18929290771484369,3,0.37858581542968739,1
+ofc_left,final,pairwise_condition,JX_minus_OI,19,0.066093444824218694,3,0.19828033447265608,0.793121337890625
+ofc_left,final,two_dimensional_condition_omnibus,CA-JX and CA-OI,19,0.17182540893554679,1,0.17182540893554679,0.6820831298828125
+ofc_left,final,posthoc_one_sided_composite,(CA+JX)/2-OI,19,0.030744552612304601,1,0.030744552612304601,0.12297821044921869

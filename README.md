@@ -1,5 +1,15 @@
 # Dataset: Haiku Insight fMRI Study
 
+> **September 2026 revision staging (not yet published):** the current Google Doc
+> manuscript has Figures 1–7 and a different Search/Pre-response analysis from
+> this May release. See [`revision_2026_09/README.md`](revision_2026_09/README.md)
+> for the live-Doc figure images, selected aggregate result tables and analysis
+> code; its 13 model-named unthresholded group t-maps are in the separate
+> [`unthresholded_tmaps/`](unthresholded_tmaps/) folder. The material described
+> **below** is retained for the older manuscript, not authoritative for the
+> September revision. This staging branch must not be pushed before public
+> data-sharing and licensing approval.
+
 **Final open-data release matched to `/manuscript/Poetic-Closure.docx`**
 
 This repository contains processed data, result tables, manuscript figures, and

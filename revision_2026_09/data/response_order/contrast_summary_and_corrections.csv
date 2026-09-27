@@ -1,0 +1,5 @@
+family,contrast_key,contrast,n_cdt_clusters,n_within_map_significant_clusters,minimum_cluster_pFWE_raw,random_seed,n_sign_flips,one_sided,voxel_CDT_p,cluster_forming_t,minimum_cluster_pFWE_holm_family_2maps,map_survives_holm_family_05
+primary_final_gt_first,pre_final_gt_first,Pre final > first,4,0,0.7280800000000001,20260921,50000,True,0.001,3.610484884825093,0.7280800000000001,False
+primary_final_gt_first,search_final_gt_first,Search final > first,79,6,0.011739999999999971,20261930,50000,True,0.001,3.610484884825093,0.023479999999999942,True
+secondary_first_gt_final,pre_first_gt_final,Pre first > final,45,0,0.10255999999999998,20262939,50000,True,0.001,3.610484884825093,0.10255999999999998,False
+secondary_first_gt_final,search_first_gt_final,Search first > final,30,2,0.0007000000000000338,20263948,50000,True,0.001,3.610484884825093,0.0014000000000000676,True
