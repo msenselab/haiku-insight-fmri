@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 52 and len({x['path'] for x in files}) == 52
+    assert len(files) == 60 and len({x['path'] for x in files}) == 60
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -71,11 +71,16 @@ def main() -> None:
                     'two_sided_test=False','n_perm=50000','20266972',
                     '20260918','participant_contrast_manifest.csv',
                     'Analysis output must be outside the public checkout'))
+    expected_live_names = {row['filename'] for row in figure_meta['figures']}
+    assert {p.name for p in (ROOT/'figures').iterdir() if p.is_file()} == expected_live_names | {'README.md','figure1_behavioral_rt.png'}
+    assert 'Figure 3' in (ROOT/'figures/README.md').read_text()
     for row in figure_meta['figures']:
         p = REV/'figures'/row['filename']
         assert 'inline_object_id' not in row
         assert sha(p) == row['sha256'] and row['caption'].startswith(f"Figure {row['figure']}."), row
         assert p.read_bytes().startswith((b'\x89PNG', b'\xff\xd8')), p
+        alias = ROOT/'figures'/row['filename']
+        assert alias.is_file() and sha(alias) == row['sha256'] and alias.read_bytes() == p.read_bytes(), alias
     maps = json.loads((MAPS/'manifest.json').read_text())
     assert len(maps) == 13 and len({x['filename'] for x in maps}) == 13
     w10 = [x for x in maps if x['model']=='DurationSensitivityW10' and x['contrast']=='PreMinusSearch_CAgtJX']

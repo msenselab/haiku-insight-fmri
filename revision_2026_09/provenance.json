@@ -324,8 +324,22 @@
       "portability_edit": false
     },
     {
+      "path": "figures/figure1.png",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 1 (root convenience copy)",
+      "sha256": "f2ac0f3dd37456fe66780ad9b2b90f0d21140759d09ab9a6b85bd7d34d4a4794",
+      "bytes": 1406710,
+      "portability_edit": false
+    },
+    {
       "path": "revision_2026_09/figures/figure2.png",
       "source_project_relative": "Google Doc manuscript t.0 Figure 2",
+      "sha256": "90d71a973df8f1da858ad074112d8c782af5cb2724a45188bcfa52de7b5f7171",
+      "bytes": 239465,
+      "portability_edit": false
+    },
+    {
+      "path": "figures/figure2.png",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 2 (root convenience copy)",
       "sha256": "90d71a973df8f1da858ad074112d8c782af5cb2724a45188bcfa52de7b5f7171",
       "bytes": 239465,
       "portability_edit": false
@@ -338,8 +352,22 @@
       "portability_edit": false
     },
     {
+      "path": "figures/figure3.png",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 3 (root convenience copy)",
+      "sha256": "6303cfaa1733b129db7fe0c82524cb54519ee091ef7bbbf299c35ecf20e326f5",
+      "bytes": 55532,
+      "portability_edit": false
+    },
+    {
       "path": "revision_2026_09/figures/figure4.png",
       "source_project_relative": "Google Doc manuscript t.0 Figure 4",
+      "sha256": "44e0843ad8ca2b7532d73ccd3915235e25d7125734b331e460383d6bb15fe120",
+      "bytes": 779506,
+      "portability_edit": false
+    },
+    {
+      "path": "figures/figure4.png",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 4 (root convenience copy)",
       "sha256": "44e0843ad8ca2b7532d73ccd3915235e25d7125734b331e460383d6bb15fe120",
       "bytes": 779506,
       "portability_edit": false
@@ -352,8 +380,22 @@
       "portability_edit": false
     },
     {
+      "path": "figures/figure5.jpg",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 5 (root convenience copy)",
+      "sha256": "f68dad52db1759263fc1f38b2d8d32d5faebb243eac5e886ef23020739db21eb",
+      "bytes": 316641,
+      "portability_edit": false
+    },
+    {
       "path": "revision_2026_09/figures/figure6.png",
       "source_project_relative": "Google Doc manuscript t.0 Figure 6",
+      "sha256": "045beb0b1bf17334b19500d3d17a65b2301fe10a5107be84e2e37910bc03875f",
+      "bytes": 1280545,
+      "portability_edit": false
+    },
+    {
+      "path": "figures/figure6.png",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 6 (root convenience copy)",
       "sha256": "045beb0b1bf17334b19500d3d17a65b2301fe10a5107be84e2e37910bc03875f",
       "bytes": 1280545,
       "portability_edit": false
@@ -363,6 +405,20 @@
       "source_project_relative": "Google Doc manuscript t.0 Figure 7",
       "sha256": "47b0158f464a2f422796dae6f4a7e96a584c2a6f1031f0846940ba082b0f3bee",
       "bytes": 130799,
+      "portability_edit": false
+    },
+    {
+      "path": "figures/figure7.jpg",
+      "source_project_relative": "Google Doc manuscript t.0 Figure 7 (root convenience copy)",
+      "sha256": "47b0158f464a2f422796dae6f4a7e96a584c2a6f1031f0846940ba082b0f3bee",
+      "bytes": 130799,
+      "portability_edit": false
+    },
+    {
+      "path": "figures/README.md",
+      "source_project_relative": "manuscript/revision/public_root_figures_readme_20260928.md",
+      "sha256": "e3d0e1b981e8499dd7d5acea23a3d6463de7f28b36a60d112438c19bb88c55fa",
+      "bytes": 941,
       "portability_edit": false
     }
   ]
