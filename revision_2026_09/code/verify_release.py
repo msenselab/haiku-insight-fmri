@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 51 and len({x['path'] for x in files}) == 51
+    assert len(files) == 52 and len({x['path'] for x in files}) == 52
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -111,8 +111,9 @@ def main() -> None:
     # grid); S2 contains only the Early/Middle/Pre-response GLM and its results.
     supp = REV/'data/supplement'
     assert {p.name for p in supp.iterdir() if p.is_file()} == {
-        'S2_N19_map_ledger.csv','S2_N19_clusters.csv',
+        'README.md','S2_N19_map_ledger.csv','S2_N19_clusters.csv',
     }
+    assert 'not a table displayed in the live supplement' in (supp/'README.md').read_text()
     s2_maps = read_rows(supp/'S2_N19_map_ledger.csv')
     s2_clusters = read_rows(supp/'S2_N19_clusters.csv')
     assert len(s2_maps) == 21 and all(int(r['n']) == 19 for r in s2_maps)

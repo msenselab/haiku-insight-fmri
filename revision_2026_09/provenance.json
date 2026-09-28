@@ -170,6 +170,13 @@
       "portability_edit": false
     },
     {
+      "path": "revision_2026_09/data/supplement/README.md",
+      "source_project_relative": "manuscript/revision/public_supplement_data_readme_20260928.md",
+      "sha256": "164dcbf9e60dd1ee80c23b4b98f30d80e6ef3baebe1e99fc9c54529b1735323e",
+      "bytes": 1799,
+      "portability_edit": false
+    },
+    {
       "path": "revision_2026_09/data/supplement/S2_N19_map_ledger.csv",
       "source_project_relative": "manuscript/revision/supplement-s2-map-ledger.csv",
       "sha256": "e0c497ea1778e617e9cb79319579167d2bef1be54a107dbe4866a59fab1f5e71",
