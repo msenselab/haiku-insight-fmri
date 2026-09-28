@@ -170,27 +170,6 @@
       "portability_edit": false
     },
     {
-      "path": "revision_2026_09/data/supplement/S1_detection_thresholds.csv",
-      "source_project_relative": "manuscript/revision/supplement-s1-detection-thresholds.csv",
-      "sha256": "736c23a4c235f146a171c61c956133baecdb778e14d9fa6ba5b41ec2edb51b9f",
-      "bytes": 794,
-      "portability_edit": false
-    },
-    {
-      "path": "revision_2026_09/data/supplement/S1_full_grid.csv",
-      "source_project_relative": "manuscript/revision/supplement-s1-full-grid.csv",
-      "sha256": "4080f122c052fab2885896ac1c751d10c24fef91884093d6fc8efadaac03383e",
-      "bytes": 302817,
-      "portability_edit": false
-    },
-    {
-      "path": "revision_2026_09/data/supplement/S1_null_validation.csv",
-      "source_project_relative": "manuscript/revision/supplement-s1-null-validation.csv",
-      "sha256": "6b4450b07f36f05ea81a2803da18dffca6b6b19bf3ae2905a2f38d07d3006c6a",
-      "bytes": 1056,
-      "portability_edit": false
-    },
-    {
       "path": "revision_2026_09/data/supplement/S2_N19_map_ledger.csv",
       "source_project_relative": "manuscript/revision/supplement-s2-map-ledger.csv",
       "sha256": "e0c497ea1778e617e9cb79319579167d2bef1be54a107dbe4866a59fab1f5e71",

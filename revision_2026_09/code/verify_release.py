@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 54 and len({x['path'] for x in files}) == 54
+    assert len(files) == 51 and len({x['path'] for x in files}) == 51
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -107,6 +107,22 @@ def main() -> None:
         target={'20266972':.0318,'20260918':.0314}[r['seed']]
         assert abs(float(r['minimum_within_map_cluster_pFWE'])-target)<1e-8
     assert (REV/'code/one_second_phase_interaction/run_w10_phase_interaction_one_sided_retrospective.py').is_file()
+    # Current live supplement: S1 is example poems (not the earlier simulation
+    # grid); S2 contains only the Early/Middle/Pre-response GLM and its results.
+    supp = REV/'data/supplement'
+    assert {p.name for p in supp.iterdir() if p.is_file()} == {
+        'S2_N19_map_ledger.csv','S2_N19_clusters.csv',
+    }
+    s2_maps = read_rows(supp/'S2_N19_map_ledger.csv')
+    s2_clusters = read_rows(supp/'S2_N19_clusters.csv')
+    assert len(s2_maps) == 21 and all(int(r['n']) == 19 for r in s2_maps)
+    assert len(s2_clusters) == 41 and all(int(r['sample_n']) == 19 for r in s2_clusters)
+    assert {r['contrast'] for r in s2_clusters} == {
+        'phase_middle_minus_early_average','phase_pre_minus_middle_average',
+        'phase_pre_minus_early_average',
+    }
+    assert all(r['significant'] == 'True' and float(r['pFWE']) < .05 for r in s2_clusters)
+    assert not any('S1_' in r['path'] for r in files)
     r = read_rows(REV/'data/roi/correlations_grid7.csv')
     key = [x for x in r if x['phase'].lower().startswith('post') and x['roi'].lower().startswith('angular') and x['condition']=='CA' and x['outcome'].lower() == 'rt']
     assert len(key) == 1 and abs(float(key[0]['r']) + 0.668) < 0.002, key
@@ -126,7 +142,7 @@ def main() -> None:
     interaction = [x for x in read_rows(REV/'data/first_response/contrast_summary.csv') if x['map_key']=='phase_pre_gt_search_CA_gt_JX']
     assert len(interaction)==1 and int(interaction[0]['n_significant_clusters'])>=1
     assert abs(float(interaction[0]['minimum_cluster_pFWE']) - 0.03592) < 1e-6
-    print(f"PASS: {len(files)} source-linked assets; 7 live-Doc figures; 13 signed t-maps; within-map FWE; exploratory W10 one-sided ledger; aggregate privacy/code checks; headline RT/PPI/behavior values")
+    print(f"PASS: {len(files)} source-linked assets; S2 single-GLM 21-map/41-cluster supplement; 7 live-Doc figures; 13 signed t-maps; within-map FWE; exploratory W10 one-sided ledger; aggregate privacy/code checks; headline RT/PPI/behavior values")
 
 if __name__ == '__main__':
     main()
