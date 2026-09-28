@@ -1,0 +1,3 @@
+model,contrast,tail_status,n,n_perm,seed,voxel_cdt_one_sided,mask_voxels,cluster_k,peak_t,peak_mni_x,peak_mni_y,peak_mni_z,minimum_within_map_cluster_pFWE,comparison_two_sided_within_map_pFWE
+DurationSensitivityW10,PreMinusSearch_CAgtJX,retrospective_positive_one_sided,19,50000,20266972,0.001,48279,24,5.356527162637549,-9,-60,-8.7,0.0318,0.08844
+DurationSensitivityW10,PreMinusSearch_CAgtJX,retrospective_positive_one_sided_seed_check,19,50000,20260918,0.001,48279,24,5.356527162637549,-9,-60,-8.7,0.0314,0.08844

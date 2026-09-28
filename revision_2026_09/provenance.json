@@ -37,6 +37,13 @@
       "portability_edit": false
     },
     {
+      "path": "revision_2026_09/data/one_second_phase_interaction/retrospective_one_sided_summary.csv",
+      "source_project_relative": "glm_unified/reports/w10_interaction_one_sided_retrospective_20260928/group_summary.csv",
+      "sha256": "369a7f9c6f33076fda2d03d18ca3e63956d7da19d5c414d64642067cb69ce36f",
+      "bytes": 515,
+      "portability_edit": false
+    },
+    {
       "path": "revision_2026_09/data/post_response/CAgtJX_corrected_clusters.csv",
       "source_project_relative": "glm_unified/permutation_cluster_fwe_table1_20260825/table1_clusterFWE_significant.csv",
       "sha256": "5d3bae16d3b7bc8c0dfcd0e803a76c6822bf8a3894e817b43ed1f2f066d68a27",
@@ -83,6 +90,13 @@
       "source_project_relative": "glm_unified/preresponse_with_search_final_vs_first_20260921_r1/group_inference/significant_clusters_within_map_labeled.csv",
       "sha256": "a63845bc1d4f7da80870f86c9883f1802a0d5473ba430f655ca3a87fc11c95ab",
       "bytes": 2464,
+      "portability_edit": false
+    },
+    {
+      "path": "revision_2026_09/data/response_order/figure6C_N19_19_15_all_available_summary.csv",
+      "source_project_relative": "glm_unified/reports/search_order1_to_order3_descriptive_paired_clusters_20260922/n19_order2_included_20260923/summary_descriptive_n19.csv",
+      "sha256": "a8ade8aa70f001b9a31df1e8d16430041fcd6720d0a3dc20527e913ae51790df",
+      "bytes": 1532,
       "portability_edit": false
     },
     {
@@ -217,6 +231,13 @@
       "sha256": "b7caab79b7e2d3e7fd1bbd2941453f562797557004117c576a52923b4cf82e42",
       "bytes": 24373,
       "portability_edit": true
+    },
+    {
+      "path": "revision_2026_09/code/one_second_phase_interaction/run_w10_phase_interaction_one_sided_retrospective.py",
+      "source_project_relative": "glm_unified/reports/w10_interaction_one_sided_retrospective_20260928/run_readback.py",
+      "sha256": "84396d6b1af8d4a548e728b377602b13d4c7a74837db751a8cd4afd8886af6ea",
+      "bytes": 4256,
+      "portability_edit": false
     },
     {
       "path": "revision_2026_09/code/post_response/rebuild_group_inference.py",
@@ -356,13 +377,6 @@
       "source_project_relative": "Google Doc manuscript t.0 Figure 7",
       "sha256": "47b0158f464a2f422796dae6f4a7e96a584c2a6f1031f0846940ba082b0f3bee",
       "bytes": 130799,
-      "portability_edit": false
-    },
-    {
-      "path": "revision_2026_09/data/response_order/figure6C_N19_19_15_all_available_summary.csv",
-      "source_project_relative": "glm_unified/reports/search_order1_to_order3_descriptive_paired_clusters_20260922/n19_order2_included_20260923/summary_descriptive_n19.csv",
-      "sha256": "a8ade8aa70f001b9a31df1e8d16430041fcd6720d0a3dc20527e913ae51790df",
-      "bytes": 1532,
       "portability_edit": false
     }
   ]

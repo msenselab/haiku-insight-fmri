@@ -28,7 +28,7 @@ def main() -> None:
     provenance = json.loads((REV/'provenance.json').read_text())
     figure_meta = json.loads((REV/'figures/captions.json').read_text())
     files = provenance['files']
-    assert len(files) == 52 and len({x['path'] for x in files}) == 52
+    assert len(files) == 54 and len({x['path'] for x in files}) == 54
     assert figure_meta['tab_id'] == 't.0' and provenance['tab_id'] == 't.0'
     assert not any(key in figure_meta or key in provenance for key in ('document_id','document_revision_id','revision_id'))
     assert sorted(x['figure'] for x in figure_meta['figures']) == list(range(1, 8))
@@ -66,14 +66,21 @@ def main() -> None:
                 'extract_prepost_matched.py','analyze_prepost_matched.py',
                 'verify_prepost_matched.py')):
                 assert 'Analysis output must be outside the public checkout' in text
+            if row['path'].endswith('/run_w10_phase_interaction_one_sided_retrospective.py'):
+                assert all(token in text for token in (
+                    'two_sided_test=False','n_perm=50000','20266972',
+                    '20260918','participant_contrast_manifest.csv',
+                    'Analysis output must be outside the public checkout'))
     for row in figure_meta['figures']:
         p = REV/'figures'/row['filename']
         assert 'inline_object_id' not in row
         assert sha(p) == row['sha256'] and row['caption'].startswith(f"Figure {row['figure']}."), row
         assert p.read_bytes().startswith((b'\x89PNG', b'\xff\xd8')), p
     maps = json.loads((MAPS/'manifest.json').read_text())
-    assert len(maps) == 12 and len({x['filename'] for x in maps}) == 12
-    assert not any(x['model']=='DurationSensitivityW10' and x['contrast']=='PreMinusSearch_CAgtJX' for x in maps)
+    assert len(maps) == 13 and len({x['filename'] for x in maps}) == 13
+    w10 = [x for x in maps if x['model']=='DurationSensitivityW10' and x['contrast']=='PreMinusSearch_CAgtJX']
+    assert len(w10)==1 and w10[0]['source_sha256']=='29fd8f876b339b53d94ced512b796dec7036cbd3594fca2b193a7fcf04d99ed3'
+    assert w10[0]['filename']=='model-DurationSensitivityW10_contrast-PreMinusSearch_CAgtJX_stat-t_desc-unthresholded.nii.gz'
     assert not (REV/'data/one_second_pre/interaction_summary_two_sided.csv').exists()
     assert not (REV/'code/one_second_pre/run_w1_group_only_two_sided.py').exists()
     assert (REV/'code/one_second_pre/run_duration_sensitivity.py').is_file()
@@ -86,6 +93,20 @@ def main() -> None:
         assert a.ndim == 3 and np.isfinite(a).all() and a.min() < 0 < a.max(), row['filename']
         assert row['shape'] == 'x'.join(map(str, im.shape)), row['filename']
         assert '/dss/' not in json.dumps(row) and '/home/' not in json.dumps(row), row['filename']
+        header_text=' '.join(str(im.header[key]) for key in ('descrip','aux_file','intent_name','db_name'))
+        header_text+=' '+' '.join(str(ext.get_content()) for ext in im.header.extensions)
+        assert not re.search(r'/dss/|/home/|sub-\d{3}|Slide\d+',header_text,re.I),row['filename']
+    directional=read_rows(REV/'data/one_second_phase_interaction/retrospective_one_sided_summary.csv')
+    assert len(directional)==2 and {r['seed'] for r in directional}=={'20266972','20260918'}
+    for r in directional:
+        assert r['model']=='DurationSensitivityW10' and r['contrast']=='PreMinusSearch_CAgtJX'
+        assert r['tail_status'].startswith('retrospective_positive_one_sided')
+        assert (int(r['n']),int(r['n_perm']),int(r['mask_voxels']),int(r['cluster_k']))==(19,50000,48279,24)
+        assert [float(r[k]) for k in ('peak_mni_x','peak_mni_y','peak_mni_z')]==[-9.,-60.,-8.7]
+        assert abs(float(r['comparison_two_sided_within_map_pFWE'])-.08844)<1e-8
+        target={'20266972':.0318,'20260918':.0314}[r['seed']]
+        assert abs(float(r['minimum_within_map_cluster_pFWE'])-target)<1e-8
+    assert (REV/'code/one_second_phase_interaction/run_w10_phase_interaction_one_sided_retrospective.py').is_file()
     r = read_rows(REV/'data/roi/correlations_grid7.csv')
     key = [x for x in r if x['phase'].lower().startswith('post') and x['roi'].lower().startswith('angular') and x['condition']=='CA' and x['outcome'].lower() == 'rt']
     assert len(key) == 1 and abs(float(key[0]['r']) + 0.668) < 0.002, key
@@ -105,7 +126,7 @@ def main() -> None:
     interaction = [x for x in read_rows(REV/'data/first_response/contrast_summary.csv') if x['map_key']=='phase_pre_gt_search_CA_gt_JX']
     assert len(interaction)==1 and int(interaction[0]['n_significant_clusters'])>=1
     assert abs(float(interaction[0]['minimum_cluster_pFWE']) - 0.03592) < 1e-6
-    print(f"PASS: {len(files)} source-linked assets; 7 live-Doc figures; 12 signed t-maps; within-map FWE; aggregate privacy/code checks; headline RT/PPI/behavior values")
+    print(f"PASS: {len(files)} source-linked assets; 7 live-Doc figures; 13 signed t-maps; within-map FWE; exploratory W10 one-sided ledger; aggregate privacy/code checks; headline RT/PPI/behavior values")
 
 if __name__ == '__main__':
     main()
